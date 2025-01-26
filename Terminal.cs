@@ -22,7 +22,8 @@ namespace PRG2_ASSIGNMENT
         public Dictionary<string, double> GateFees { get; set; } = new Dictionary<string, double>();
 
         public bool AddAirline(Airline airline)
-        {
+        { // add new airline to terminal
+            // only add if airline is not in dictionary
             if (!Airlines.ContainsKey(airline.Code))
             {
                 Airlines[airline.Code] = airline;
@@ -32,7 +33,8 @@ namespace PRG2_ASSIGNMENT
         }
 
         public bool AddBoardingGate(BoardingGate gate)
-        {
+        { // add boarding gate to terminal
+            // only add if gate is not in dictionary
             if (!BoardingGates.ContainsKey(gate.GateName))
             {
                 BoardingGates[gate.GateName] = gate;
@@ -42,9 +44,9 @@ namespace PRG2_ASSIGNMENT
         }
 
         public Airline GetAirlineFromFlight(Flight flight)
-        {
+        { // get airline associated with the flight
             foreach (var airline in Airlines.Values)
-            {
+            { // iterate through the airlines to find the one with the flight
                 if (airline.Flights.ContainsKey(flight.FlightNumber))
                     return airline;
             }
@@ -52,7 +54,7 @@ namespace PRG2_ASSIGNMENT
         }
 
         public void PrintAirlineFees()
-        {
+        { // prints total fees for each airline
             foreach (var airline in Airlines.Values)
             {
                 Console.WriteLine($"Airline: {airline.Name}, Fees: {airline.CalculateFees()}");
@@ -66,4 +68,4 @@ namespace PRG2_ASSIGNMENT
     }
 
 }
-// committed on 26.01.25 1.50 pm
+// committed on 26.01.25 2.10 pm
