@@ -1,4 +1,10 @@
-﻿using System;
+﻿//==========================================================
+// Student Number : S10267773
+// Student Name	  : Joely Lim Kei Cin 
+// Partner Name	  : Antozesslyn Alister
+//==========================================================
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,3 +32,6 @@ namespace PRG2_ASSIGNMENT
         }
     }
 }
+
+
+// committed on 26.01.25 7 pm with name header
