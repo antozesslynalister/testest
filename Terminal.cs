@@ -61,6 +61,55 @@ namespace PRG2_ASSIGNMENT
             }
         }
 
+        public void LoadAirlinesFromCSV(string fileName)
+        {
+            string[] lines = File.ReadAllLines("airlines.csv");
+            foreach (var line in lines)
+            {
+                var columns = line.Split(',');
+                if (columns.Length == 2)
+                {
+                    var airlineCode = columns[0].Trim();
+                    var airlineName = columns[1].Trim();
+                    var airline = new Airline
+                    {
+                        Code = airlineCode,
+                        Name = airlineName
+                    };
+
+                    AddAirline(airline); // add  airline to airlines dictionary
+                }
+            }
+            Console.WriteLine("Airlines loaded successfully.");
+        }
+
+        public void LoadBoardingGatesFromCSV(string fileName)
+        {
+            string[] lines = File.ReadAllLines("boardinggates.csv");
+            foreach (var line in lines)
+            {
+                var columns = line.Split(',');
+                if (columns.Length == 4)
+                {
+                    var gateName = columns[0].Trim();
+                    var supportsCFFT = bool.Parse(columns[1].Trim());
+                    var supportsDDJB = bool.Parse(columns[2].Trim());
+                    var supportsLWTT = bool.Parse(columns[3].Trim());
+
+                    var boardingGate = new BoardingGate
+                    {
+                        GateName = gateName,
+                        SupportsCFFT = supportsCFFT,
+                        SupportsDDJB = supportsDDJB,
+                        SupportsLWTT = supportsLWTT,
+                        Flight = Flights.ContainsKey(flightNumber) ? Flights[flightNumber] : null // assign flight if exists
+                    };
+
+                    AddBoardingGate(boardingGate); // add boarding gate to BoardingGates dictionary
+                }
+            }
+            Console.WriteLine("Boarding gates loaded successfully.");
+
         public override string ToString()
         {
             return $"Terminal: {TerminalName}, Airlines: {Airlines.Count}, Flights: {Flights.Count}, Boarding Gates: {BoardingGates.Count}";
@@ -68,4 +117,4 @@ namespace PRG2_ASSIGNMENT
     }
 
 }
-// committed on 26.01.25 2.10 pm
+// committed on 26.01.25 6.35 pm with extra methods for basic feature 1
