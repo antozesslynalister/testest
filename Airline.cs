@@ -17,12 +17,14 @@ namespace PRG2_ASSIGNMENT
     {
         public string Name { get; set; }
         public string Code { get; set; }
+        // to be indentified by flight no
         public Dictionary<string, Flight> Flights { get; set; } = new Dictionary<string, Flight>();
 
         public bool AddFlight(Flight flight)
-        {
+        { // add new flight to airline
+            // only add if flight is not in dict
             if (!Flights.ContainsKey(flight.FlightNumber))
-            {
+            { 
                 Flights[flight.FlightNumber] = flight;
                 return true;
             }
@@ -30,12 +32,13 @@ namespace PRG2_ASSIGNMENT
         }
 
         public bool RemoveFlight(Flight flight)
-        {
+        { // remove flight from terminal
+            // to be removed by flight no
             return Flights.Remove(flight.FlightNumber);
         }
 
         public double CalculateFees()
-        {
+        { // total fees for all flights of an airline
             double totalFees = 0;
             foreach (var flight in Flights.Values)
             {
@@ -51,3 +54,5 @@ namespace PRG2_ASSIGNMENT
     }
 
 }
+
+// committed on 26.01.25 2.10 pm

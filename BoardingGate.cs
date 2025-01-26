@@ -23,6 +23,7 @@ namespace PRG2_ASSIGNMENT
 
         public double CalculateFees()
         {
+            // if a flight is assigned, calculate fees. if not, 0
             return Flight != null ? Flight.CalculateFee() : 0;
         }
 
@@ -34,4 +35,4 @@ namespace PRG2_ASSIGNMENT
 
 }
 
-// commit testing
+// committed on 26.01.25 2.10 pm
