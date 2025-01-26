@@ -1,10 +1,17 @@
-﻿using System;
+﻿//==========================================================
+// Student Number : S10270608
+// Student Name	  : Antozesslyn Alister
+// Partner Name	  : Joely Lim Kei Cin
+//==========================================================
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace prg_assignment
+namespace PRG2_ASSIGNMENT
 {
     public class Airline
     {
@@ -44,4 +51,3 @@ namespace prg_assignment
     }
 
 }
-//testing123
