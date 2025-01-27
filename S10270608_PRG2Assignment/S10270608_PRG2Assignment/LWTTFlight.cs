@@ -22,14 +22,23 @@ namespace S10270608_PRG2Assignment
             set { requestFee = value; }
         }
         public LWTTFlight() { }
-        public LWTTFlight(string fn, string o, string d, DateTime et, string s, double rf) : base(fn, o, d, et, s)
-        {
-            RequestFee = rf;
-        }
-        public override double CalculateFee()
+        public LWTTFlight(string fn, string o, string d, DateTime et) : base(fn, o, d, et)
         {
             RequestFee = 500;
-            return RequestFee;
+        }
+        public override double CalculateFees()
+        {
+            double Base = 300;
+            double fee = 0;
+            if (Destination == "Singapore (SIN)")
+            {
+                fee= Base + 500 + RequestFee;
+            }
+            else if (Destination != "Singapore (SIN)")
+            {
+                fee = Base + 800 + RequestFee;
+            }
+            return fee;
         }
         public override string ToString()
         {

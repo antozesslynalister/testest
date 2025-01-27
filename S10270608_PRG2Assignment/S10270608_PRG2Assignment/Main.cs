@@ -100,6 +100,7 @@ void DisplayBoardingGates(Terminal terminal)
 Dictionary<string, Flight> flightlist = new Dictionary<string, Flight>();
 void Load_Flight()
 {
+    Console.WriteLine("Loading Flights...");
     using (StreamReader sr = new StreamReader("flights.csv"))
     {
         string? s;
@@ -110,42 +111,95 @@ void Load_Flight()
             string origin = data[1];
             string destination = data[2];
             DateTime expected_time = DateTime.Parse(data[3]);
-            string status = data[4];
-            Flight flight1 = new NORMFlight(flight_num, origin, destination, expected_time, status);
-            flightlist.Add(flight_num, flight1);
+            string code = data[4];
+            if (code == "DDJB")
+            {
+                Flight ddjb_flight = new DDJBFlight(flight_num, origin, destination, expected_time);
+                flightlist.Add(flight_num, ddjb_flight);
+            }
+            else if (code =="LWTT")
+            {
+                Flight lwtt_flight = new LWTTFlight(flight_num, origin, destination, expected_time);
+                flightlist.Add(flight_num, lwtt_flight);
+            }
+            else if (code =="CFFT")
+            {
+                Flight cfft_flight = new CFFTFlight(flight_num, origin, destination, expected_time);
+                flightlist.Add(flight_num, cfft_flight);
+            }
         }
     }
+    Console.WriteLine($"{flightlist.Count} flights loaded!");
 }
-Load_Flight();
+
 
 // Basic feature 3 : List all flights with their basic information
 void Display_Flights()
 {
-    Console.WriteLine("{0, -15}{1, -15}{2, -15}{3, -15}{4, -15}", "Flight Number: ", "Origin: ", "Destination", "Expected Time: ", "Status: ");
+    Console.WriteLine("{0, -15}{1, -15}{2, -15}{3, -15}{4, -15}", "Flight Number: ", "Origin: ", "Destination", "Expected Time: ");
     foreach (KeyValuePair<string, Flight> flight in flightlist)
     {
-        Console.WriteLine("{ 0, -15}, { 1, -15}, { 2, -15}, { 3, -15}, { 4, -15}", (flight.Key), (flight.Value.Origin), (flight.Value.Destination), (flight.Value.ExpectedTime), (flight.Value.Status));
+        Console.WriteLine("{ 0, -15}, { 1, -15}, { 2, -15}, { 3, -15}, { 4, -15}", (flight.Key), (flight.Value.Origin), (flight.Value.Destination), (flight.Value.ExpectedTime));
     }
 }
-Display_Flights();
+
 
 // Basic Feature 5 : Assign a boarding gate to a flight
 void BoardingGateToFlight()
 {
-    Console.Write("Enter your flight number: ");
+
+    Console.Write("Enter Flight Number: ");
     string flightnum = Console.ReadLine();
+    Console.Write("Enter Boarding Gate Name: ");
+    string boarding_gate = Console.ReadLine();
     foreach (KeyValuePair<string, Flight> flight in flightlist)
     {
-        if (flight.Key == flightnum)
+        if (flightnum == flight.Key)
         {
-            Console.WriteLine("{ 0, -15}, { 1, -15}, { 2, -15}, { 3, -15}, { 4, -15}", (flight.Key), (flight.Value.Origin), (flight.Value.Destination), (flight.Value.ExpectedTime), (flight.Value.Status));
+            string origin = flight.Value.Origin;
+            string destination = flight.Value.Destination;
+            DateTime expected_time = flight.Value.ExpectedTime;
+            Console.WriteLine($"Flight number: {flightnum}");
+            Console.WriteLine($"Origin: {origin}");
+            Console.WriteLine($"Destination: {destination}");
+            Console.WriteLine($"Expected Time: {expected_time}");
+            if ()
+            {
+                Console.WriteLine($"Special Request Code: None");
+            }
+            else
+            {
+                Console.WriteLine($"Special Request Code: {}");
+            }
         }
-        else
-        { continue; }
+        else 
+            { continue; }
     }
-    Console.WriteLine("Enter the boarding gate: ");
-    string boarding_gate = Console.ReadLine();
-    
+    foreach (KeyValuePair<string, BoardingGate> gate in boardingGateList)
+    {
+        if (gate.Key == boarding_gate)
+        {
+            bool supportDDJB = gate.Value.SupportsDDJB;
+            bool supportCFFT = gate.Value.SupportsCFFT;
+            bool supportLWTT = gate.Value.SupportsLWTT;
+            Console.WriteLine($"Boarding Gate Name: {boarding_gate}");
+            Console.WriteLine($"Support DDJB: {supportDDJB}");
+            Console.WriteLine($"Supports CFFT: {supportCFFT}");
+            Console.WriteLine($"Supports LWTT: {supportLWTT}");
+        }
+        else 
+            { continue; }
+        Console.Write("Would you like to update the status of the flight? (Y/N)")
+        string choice = Console.ReadLine();
+        if (choice == "Y")
+        {
+            Console.WriteLine("1. Delayed");
+            Console.WriteLine("2. Boarding");
+            Console.WriteLine("3. On Time");
+            Console.Write("Please select the new status of the flight: ");
+            string statusChoice = Console.ReadLine();
+
+    }
 }
 
 // Basic Feature 6 : Create a new flight

@@ -47,23 +47,14 @@ namespace S10270608_PRG2Assignment
             set { status = value; }
         }
         public Flight() { }
-        public Flight(string fn, string o, string d, DateTime et, string s)
+        public Flight(string fn, string o, string d, DateTime et)
         {
             FlightNumber = fn;
             Origin = o;
             Destination = d;
             ExpectedTime = et;
-            Status = s;
         }
-        public virtual double CalculateFees()
-        {
-            double fee = 0;
-            if (Destination == "Singapore(SIN)")
-            { fee = 500; }
-            else
-            { fee = 800; }
-            return fee;
-        }
+        public abstract double CalculateFees();
         public override string ToString()
         {
             return $"{FlightNumber}\t{Origin}\t{Destination}\t{ExpectedTime}\t{Status}\t";

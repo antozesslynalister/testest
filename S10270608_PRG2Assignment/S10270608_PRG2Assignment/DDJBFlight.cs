@@ -21,12 +21,21 @@ namespace S10270608_PRG2Assignment
             set { requestFee = value; }
         }
         public DDJBFlight() { }
-        public DDJBFlight(string fn, string o, string d, DateTime et, string s, double rf) : base(fn, o, d, et, s)
-        { RequestFee = rf; }
-        public override double CalculateFee()
+        public DDJBFlight(string fn, string o, string d, DateTime et) : base(fn, o, d, et)
+        { RequestFee = 300; }
+        public override double CalculateFees()
         {
-            RequestFee = 300;
-            return RequestFee;
+            double Base = 300;
+            double fee = 0;
+            if (Destination == "SINGAPORE (SIN)")
+            {
+                fee = 500 + Base + RequestFee;
+            }
+            else
+            {
+                fee = 800 + Base + RequestFee;
+            }
+            return fee;
         }
         public override string ToString()
         {
