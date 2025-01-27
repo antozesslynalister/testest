@@ -55,7 +55,15 @@ namespace S10270608_PRG2Assignment
             ExpectedTime = et;
             Status = s;
         }
-        public abstract double CalculateFee();
+        public virtual double CalculateFee()
+        {
+            double fee = 0;
+            if (Destination == "Singapore(SIN)")
+            { fee = 500; }
+            else
+            { fee = 800; }
+            return fee;
+        }
         public override string ToString()
         {
             return $"{FlightNumber}\t{Origin}\t{Destination}\t{ExpectedTime}\t{Status}\t";

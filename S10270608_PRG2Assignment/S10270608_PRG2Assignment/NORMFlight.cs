@@ -29,5 +29,3 @@ namespace S10270608_PRG2Assignment
         }
     }
 }
-
-

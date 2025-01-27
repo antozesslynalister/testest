@@ -1,46 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\",
+  "WorkspaceRootPath": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\airline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\airline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\normflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\normflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\cfftflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\cfftflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\ddjbflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\ddjbflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\lwttflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\lwttflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\lwttflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\flight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\boardinggate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\boardinggate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\boardinggate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\terminal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\terminal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\antozesslyn\\onedrive - ngee ann polytechnic\\documents\\data science\\! oct 24\\programming 02\\assignment !\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\normflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\normflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\airline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\airline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\ddjbflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\ddjbflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\cfftflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\cfftflight.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|c:\\users\\yloej\\onedrive - ngee ann polytechnic\\documents\\github\\s10270608_prg2assignment\\s10270608_prg2assignment\\s10270608_prg2assignment\\terminal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{38CFB410-74B9-4127-922A-3D4A10C3C21A}|S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj|solutionrelative:s10270608_prg2assignment\\terminal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,104 +50,122 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 9,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Main.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Main.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Main.cs",
               "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\Main.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Main.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Main.cs",
               "RelativeToolTip": "S10270608_PRG2Assignment\\Main.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADMAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwDAAAAC1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-27T02:08:42.196Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Airline.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Airline.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Airline.cs",
               "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\Airline.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Airline.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Airline.cs",
               "RelativeToolTip": "S10270608_PRG2Assignment\\Airline.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:57:17.994Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NORMFlight.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\NORMFlight.cs",
-              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\NORMFlight.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\NORMFlight.cs",
-              "RelativeToolTip": "S10270608_PRG2Assignment\\NORMFlight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:56:49.116Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CFFTFlight.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\CFFTFlight.cs",
-              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\CFFTFlight.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\CFFTFlight.cs",
-              "RelativeToolTip": "S10270608_PRG2Assignment\\CFFTFlight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:56:17.262Z"
+              "WhenOpened": "2025-01-27T01:57:17.994Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DDJBFlight.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\DDJBFlight.cs",
-              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\DDJBFlight.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\DDJBFlight.cs",
-              "RelativeToolTip": "S10270608_PRG2Assignment\\DDJBFlight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "Title": "NORMFlight.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\NORMFlight.cs",
+              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\NORMFlight.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\NORMFlight.cs",
+              "RelativeToolTip": "S10270608_PRG2Assignment\\NORMFlight.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA3wB4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:55:02.121Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LWTTFlight.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\LWTTFlight.cs",
-              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\LWTTFlight.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\LWTTFlight.cs",
-              "RelativeToolTip": "S10270608_PRG2Assignment\\LWTTFlight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:54:07.65Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Flight.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Flight.cs",
-              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\Flight.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Flight.cs",
-              "RelativeToolTip": "S10270608_PRG2Assignment\\Flight.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:53:07.81Z"
+              "WhenOpened": "2025-01-27T01:56:49.116Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "CFFTFlight.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\CFFTFlight.cs",
+              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\CFFTFlight.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\CFFTFlight.cs",
+              "RelativeToolTip": "S10270608_PRG2Assignment\\CFFTFlight.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T01:56:17.262Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DDJBFlight.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\DDJBFlight.cs",
+              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\DDJBFlight.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\DDJBFlight.cs",
+              "RelativeToolTip": "S10270608_PRG2Assignment\\DDJBFlight.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T01:55:02.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LWTTFlight.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\LWTTFlight.cs",
+              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\LWTTFlight.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\LWTTFlight.cs",
+              "RelativeToolTip": "S10270608_PRG2Assignment\\LWTTFlight.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwBYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T01:54:07.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Flight.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Flight.cs",
+              "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\Flight.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Flight.cs",
+              "RelativeToolTip": "S10270608_PRG2Assignment\\Flight.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAEcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-27T01:53:07.81Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Terminal.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Terminal.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Terminal.cs",
               "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\Terminal.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Terminal.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Terminal.cs",
               "RelativeToolTip": "S10270608_PRG2Assignment\\Terminal.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -155,27 +173,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "BoardingGate.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\BoardingGate.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\BoardingGate.cs",
               "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\BoardingGate.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\BoardingGate.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\BoardingGate.cs",
               "RelativeToolTip": "S10270608_PRG2Assignment\\BoardingGate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:49:51.347Z"
+              "WhenOpened": "2025-01-27T01:49:51.347Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Program.cs",
               "RelativeDocumentMoniker": "S10270608_PRG2Assignment\\Program.cs",
-              "ToolTip": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\programming 02\\assignment !\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Program.cs",
+              "ToolTip": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\Program.cs",
               "RelativeToolTip": "S10270608_PRG2Assignment\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-27T01:49:00.444Z"
+              "WhenOpened": "2025-01-27T01:49:00.444Z",
+              "EditorCaption": ""
             }
           ]
         }
