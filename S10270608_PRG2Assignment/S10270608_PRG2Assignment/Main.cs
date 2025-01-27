@@ -17,6 +17,34 @@ Terminal terminal = new Terminal();
 terminal.LoadAirlinesFromCSV("airlines.csv");
 terminal.LoadBoardingGatesFromCSV("boardinggates.csv");
 
+// Basic feature 4 : List all boarding gates
+void DisplayBoardingGates(Terminal terminal)
+{
+    Console.WriteLine("{0, -15}{1, -10}{2, -10}{3, -10}", "Boarding Gate", "DDJB", "CFFT", "LWTT");
+
+    // iterate thru boarding gates to get value
+    foreach (var boardingGate in terminal.BoardingGates.Values)
+    {
+        Console.WriteLine("{0, -15}{1, -10}{2, -10}{3, -10}",
+            boardingGate.GateName,
+            boardingGate.SupportsDDJB ? "TRUE" : "FALSE",
+            boardingGate.SupportsCFFT ? "TRUE" : "FALSE",
+            boardingGate.SupportsLWTT ? "TRUE" : "FALSE");
+    }
+}
+DisplayBoardingGates(terminal);
+
+// Basic Feature 7 : Display full flight details from an airline
+
+// Basic Feature 8 : Modify flight details
+
+
+
+
+
+
+
+// DO NOT TOUCH JOELY LIM 
 
 // Basic feature 2 : Load files (flights)
 Dictionary<string, Flight> flightlist = new Dictionary<string, Flight>();
@@ -40,7 +68,6 @@ void Load_Flight()
 }
 Load_Flight();
 
-
 // Basic feature 3 : List all flights with their basic information
 void Display_Flights()
 {
@@ -52,33 +79,29 @@ void Display_Flights()
 }
 Display_Flights();
 
-
-// Basic feature 4 : List all boarding gates
-void DisplayBoardingGates(Terminal terminal)
-{
-    Console.WriteLine("{0, -15}{1, -10}{2, -10}{3, -10}", "Boarding Gate", "DDJB", "CFFT", "LWTT");
-
-    // iterate thru boarding gates to get value
-    foreach (var boardingGate in terminal.BoardingGates.Values)
-    {
-        Console.WriteLine("{0, -15}{1, -10}{2, -10}{3, -10}",
-            boardingGate.GateName,
-            boardingGate.SupportsDDJB ? "TRUE" : "FALSE",
-            boardingGate.SupportsCFFT ? "TRUE" : "FALSE",
-            boardingGate.SupportsLWTT ? "TRUE" : "FALSE");
-    }
-}
-DisplayBoardingGates(terminal);
-
-
 // Basic Feature 5 : Assign a boarding gate to a flight
+void BoardingGateToFlight()
+{
+    Console.Write("Enter your flight number: ");
+    string flightnum = Console.ReadLine();
+    foreach (KeyValuePair<string, Flight> flight in flightlist)
+    {
+        if (flight.Key == flightnum)
+        {
+            Console.WriteLine("{ 0, -15}, { 1, -15}, { 2, -15}, { 3, -15}, { 4, -15}", (flight.Key), (flight.Value.Origin), (flight.Value.Destination), (flight.Value.ExpectedTime), (flight.Value.Status));
+        }
+        else
+        { continue; }
+    }
+    Console.WriteLine("Enter the boarding gate: ");
+    string boarding_gate = Console.ReadLine();
+    
+}
 
 // Basic Feature 6 : Create a new flight
 
-// Basic Feature 7 : Display full flight details from an airline
 
 
 
-// Basic Feature 8 : Modify flight details
 
 // Basic Feature 9 : Display scheduled flights in chronological order, with boarding gates assignments where applicable
