@@ -11,6 +11,7 @@
 // Basic feature 1 : Load files (airlines and boarding gates)
 // added methods onto Terminal class for easyness  
 using S10270608_PRG2Assignment;
+using System.Net;
 
 Terminal terminal = new Terminal();
 terminal.LoadAirlinesFromCSV("airlines.csv");
@@ -70,3 +71,14 @@ void DisplayBoardingGates(Terminal terminal)
 DisplayBoardingGates(terminal);
 
 
+// Basic Feature 5 : Assign a boarding gate to a flight
+
+// Basic Feature 6 : Create a new flight
+
+// Basic Feature 7 : Display full flight details from an airline
+
+
+
+// Basic Feature 8 : Modify flight details
+
+// Basic Feature 9 : Display scheduled flights in chronological order, with boarding gates assignments where applicable

@@ -20,10 +20,19 @@ namespace S10270608_PRG2Assignment
         public bool SupportsLWTT { get; set; }
         public Flight Flight { get; set; }
 
+
+        public BoardingGate() { }
+        public BoardingGate(string gateName, bool cfft, bool ddjb, bool lwtt)
+        {
+            GateName = gateName;
+            SupportsCFFT = cfft;
+            SupportsDDJB = ddjb;
+            SupportsLWTT = lwtt;
+        }
         public double CalculateFees()
         {
             // if a flight is assigned, calculate fees. if not, 0
-            return Flight != null ? Flight.CalculateFee() : 0;
+            return Flight != null ? Flight.CalculateFees() : 0;
         }
 
         public override string ToString()

@@ -22,6 +22,17 @@ namespace S10270608_PRG2Assignment
         public Dictionary<string, BoardingGate> BoardingGates { get; set; } = new Dictionary<string, BoardingGate>();
         public Dictionary<string, double> GateFees { get; set; } = new Dictionary<string, double>();
 
+        public Terminal() { }
+        public Terminal(string terminalName)
+        {
+            TerminalName = terminalName;
+            Airlines = new Dictionary<string, Airline>(); 
+            Flights = new Dictionary<string, Flight>();
+            BoardingGates = new Dictionary<string, BoardingGate>();
+            GateFees = new Dictionary<string, double>();
+        }
+
+
         public bool AddAirline(Airline airline)
         { // add new airline to terminal
             // only add if airline is not in dictionary
@@ -77,12 +88,7 @@ namespace S10270608_PRG2Assignment
                 {
                     var airlineCode = columns[0].Trim();
                     var airlineName = columns[1].Trim();
-                    var airline = new Airline
-                    {
-                        Code = airlineCode,
-                        Name = airlineName
-                    };
-
+                    var airline = new Airline(airlineCode, airlineName);
                     AddAirline(airline); // add  airline to airlines dictionary
                 }
             }
@@ -92,6 +98,7 @@ namespace S10270608_PRG2Assignment
         public void LoadBoardingGatesFromCSV(string fileName)
         {
             string[] lines = File.ReadAllLines("boardinggates.csv");
+
             foreach (var line in lines)
             {
                 var columns = line.Split(',');
@@ -102,16 +109,9 @@ namespace S10270608_PRG2Assignment
                     var supportsDDJB = bool.Parse(columns[2].Trim());
                     var supportsLWTT = bool.Parse(columns[3].Trim());
 
-                    var boardingGate = new BoardingGate
-                    {
-                        GateName = gateName,
-                        SupportsCFFT = supportsCFFT,
-                        SupportsDDJB = supportsDDJB,
-                        SupportsLWTT = supportsLWTT,
-                        Flight = Flights.ContainsKey(flightNumber) ? Flights[flightNumber] : null // assign flight if exists
-                    };
-
-                    AddBoardingGate(boardingGate); // add boarding gate to BoardingGates dictionary
+                    var boardingGate = new BoardingGate(gateName, supportsCFFT, supportsDDJB, supportsLWTT);
+                        //Flight = Flights.ContainsKey(FlightNumber) ? Flights[FlightNumber] : null // assign flight if exists
+                   AddBoardingGate(boardingGate); // add boarding gate to BoardingGates dictionary
                 }
             }
             Console.WriteLine("Boarding gates loaded successfully.");

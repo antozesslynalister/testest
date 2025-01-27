@@ -18,7 +18,17 @@ namespace S10270608_PRG2Assignment
         public string Name { get; set; }
         public string Code { get; set; }
         // to be indentified by flight no
-        public Dictionary<string, Flight> Flights { get; set; } = new Dictionary<string, Flight>();
+        public Dictionary<string, Flight> Flights { get; set; } 
+            // = new Dictionary<string, Flight>();
+
+
+        public Airline() { }
+        public Airline(string name, string code)
+        {
+            Name = name;
+            Code = code;
+            Flights = new Dictionary<string, Flight>();
+        }
 
         public bool AddFlight(Flight flight)
         { // add new flight to airline
@@ -40,7 +50,7 @@ namespace S10270608_PRG2Assignment
         public double CalculateFees()
         { // total fees for all flights of an airline
             double totalFees = 0;
-            foreach (var flight in Flights.Values)
+            foreach (Flight flight in Flights.Values)
             {
                 totalFees += flight.CalculateFees();
             }

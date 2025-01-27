@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace S10270608_PRG2Assignment
 {
-    abstract class Flight
+    public abstract class Flight
     {
         private string flightNumber;
         private string origin;
@@ -55,7 +55,7 @@ namespace S10270608_PRG2Assignment
             ExpectedTime = et;
             Status = s;
         }
-        public virtual double CalculateFee()
+        public virtual double CalculateFees()
         {
             double fee = 0;
             if (Destination == "Singapore(SIN)")

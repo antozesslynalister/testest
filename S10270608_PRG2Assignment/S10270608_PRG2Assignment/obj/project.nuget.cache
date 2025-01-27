@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "EBq5cBTNEP0=",
+  "dgSpecHash": "EY+YM9UKnEc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj",
+  "projectFilePath": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
