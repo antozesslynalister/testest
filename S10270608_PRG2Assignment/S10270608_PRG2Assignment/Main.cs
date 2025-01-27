@@ -5,17 +5,68 @@
 // Partner Name	  : Joely Lim Kei Cin
 //==========================================================
 
-
-
-
-// Basic feature 1 : Load files (airlines and boarding gates)
-// added methods onto Terminal class for easyness  
 using S10270608_PRG2Assignment;
 using System.Net;
 
-Terminal terminal = new Terminal();
-terminal.LoadAirlinesFromCSV("airlines.csv");
-terminal.LoadBoardingGatesFromCSV("boardinggates.csv");
+
+// Basic feature 1 : Load files (airlines and boarding gates) 
+
+// dictionary to store airlines
+Dictionary<string, Airline> airlineList = new Dictionary<string, Airline>();
+
+// to load airlines from the CSV file
+void Load_Airlines()
+{
+    using (StreamReader sr = new StreamReader("airlines.csv"))
+    {
+        string? line;
+        while ((line = sr.ReadLine()) != null)
+        {
+            string[] data = line.Split(",");
+            string airlineCode = data[0].Trim();
+            string airlineName = data[1].Trim();
+
+            // create an Airline object
+            Airline airline = new Airline(airlineCode, airlineName);
+
+            // add the Airline object to the dictionary
+            airlineList.Add(airlineCode, airline);
+        }
+    }
+    Console.WriteLine("Loading Airlines...");
+}
+Console.WriteLine("Loading Airlines...");
+
+
+// dictionary to store boarding gates
+Dictionary<string, BoardingGate> boardingGateList = new Dictionary<string, BoardingGate>();
+
+// method to load boarding gates from the CSV file
+void Load_BoardingGates()
+{
+    using (StreamReader sr = new StreamReader("boardinggates.csv"))
+    {
+        string? line;
+        while ((line = sr.ReadLine()) != null)
+        {
+            string[] data = line.Split(",");
+            string gateName = data[0].Trim();
+            bool supportsCFFT = bool.Parse(data[1].Trim());
+            bool supportsDDJB = bool.Parse(data[2].Trim());
+            bool supportsLWTT = bool.Parse(data[3].Trim());
+
+            // create a BoardingGate object
+            BoardingGate gate = new BoardingGate(gateName, supportsCFFT, supportsDDJB, supportsLWTT, null);
+
+            // add the BoardingGate object to the dictionary
+            boardingGateList.Add(gateName, gate);
+        }
+    }
+    Console.WriteLine("Loading Boarding Gates ...");
+}
+
+
+
 
 // Basic feature 4 : List all boarding gates
 void DisplayBoardingGates(Terminal terminal)
@@ -32,7 +83,6 @@ void DisplayBoardingGates(Terminal terminal)
             boardingGate.SupportsLWTT ? "TRUE" : "FALSE");
     }
 }
-DisplayBoardingGates(terminal);
 
 // Basic Feature 7 : Display full flight details from an airline
 
@@ -43,7 +93,7 @@ DisplayBoardingGates(terminal);
 
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DO NOT TOUCH JOELY LIM 
 
 // Basic feature 2 : Load files (flights)
