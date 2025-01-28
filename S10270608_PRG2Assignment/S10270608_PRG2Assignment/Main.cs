@@ -81,6 +81,10 @@ void Load_BoardingGates()
         Console.WriteLine("Loading Boarding Gates ...");
         Console.WriteLine($"{gateCount} Boarding Gates Loaded!");
     }
+    catch (FileNotFoundException ex)
+    {
+        Console.WriteLine($"Error File not found. {ex.Message}");
+    }
     catch (Exception ex)
     {
         Console.WriteLine("Error Loading Boarding Gates {ex.Message}");
@@ -200,7 +204,7 @@ void DisplayFlightsForAirline(Airline selectedAirline)
     // display each flight's details (Airline Number, Origin, and Destination)
     foreach (var flight in selectedAirline.Flights.Values)
     {
-        Console.WriteLine($"{flight.FlightNumber,-20}{flight.Airline,-20}{flight.Origin,-25}{flight.Destination,-25}{flight.ExpectedTime:dd/MM/yyyy hh:mm tt}");
+        Console.WriteLine($"{flight.FlightNumber,-20}{selectedAirline.Name,-20}{flight.Origin,-25}{flight.Destination,-25}{flight.ExpectedTime:dd/MM/yyyy hh:mm tt}");
     }
 
     // ask the user to either modify or delete a flight
@@ -246,75 +250,101 @@ void ModifyFlight(Airline selectedAirline, Flight selectedFlight)
 
     if (modifyChoice == "1")
     {
-        Console.Write("Enter new Origin: ");
-        string origin = Console.ReadLine();
-        Console.Write("Enter new Destination: ");
-        string destination = Console.ReadLine();
-        Console.Write("Enter new Expected Departure/Arrival Time (dd/MM/yyyy hh:mm): ");
-        string timeInput = Console.ReadLine();
-
-        if (DateTime.TryParse(timeInput, out DateTime newTime) && !string.IsNullOrWhiteSpace(origin) && !string.IsNullOrWhiteSpace(destination))
-        {
-            selectedFlight.Origin = origin;
-            selectedFlight.Destination = destination;
-            selectedFlight.ExpectedTime = newTime;
-            Console.WriteLine("Flight updated!");
-        }
-        else
-        {
-            Console.WriteLine("Flight not updated!");
-        }
+        ModifyBasicInformation(selectedFlight);
     }
     else if (modifyChoice == "2")
     {
-        Console.Write("Enter new Status: ");
-        string status = Console.ReadLine();
-        if (!string.IsNullOrWhiteSpace(status))
-        {
-            selectedFlight.Status = status;
-            Console.WriteLine("Status updated successfully!");
-        }
-        else
-        {
-            Console.WriteLine("Status not updated successfully!");
-        }
+        ModifyStatus(selectedFlight);
     }
     else if (modifyChoice == "3")
     {
-        Console.Write("Enter new Special Request Code: ");
-        string requestCode = Console.ReadLine();
-        if (!string.IsNullOrWhiteSpace(requestCode))
-        {
-            selectedFlight.SpecialRequestCode = requestCode;
-            Console.WriteLine("Special Request Code updated successfully!");
-        }
-        else
-        {
-            Console.WriteLine("Special Request Code cannot be empty. Update canceled.");
-        }
+        ModifySpecialRequestCode(selectedFlight);
     }
     else if (modifyChoice == "4")
     {
-        Console.Write("Enter new Boarding Gate: ");
-        string gate = Console.ReadLine();
-        if (!string.IsNullOrWhiteSpace(gate))
-        {
-            selectedFlight.BoardingGate = new BoardingGate(gate, false, false, false);
-            Console.WriteLine("Boarding Gate updated successfully!");
-        }
-        else
-        {
-            Console.WriteLine("Boarding Gate not updated successfully!");
-        }
+        ModifyBoardingGate(selectedFlight);
     }
     else
     {
-        Console.WriteLine("Invalid Choice !");
+        Console.WriteLine("Invalid Choice!");
     }
 
     Console.WriteLine("Flight updated!");
     DisplayFlightDetails(selectedFlight);
 }
+
+// for modification choice 1 
+void ModifyBasicInformation(Flight selectedFlight)
+{
+    Console.Write("Enter new Origin: ");
+    string origin = Console.ReadLine();
+    Console.Write("Enter new Destination: ");
+    string destination = Console.ReadLine();
+    Console.Write("Enter new Expected Departure/Arrival Time (dd/MM/yyyy hh:mm): ");
+    string timeInput = Console.ReadLine();
+
+    if (DateTime.TryParse(timeInput, out DateTime newTime) && !string.IsNullOrWhiteSpace(origin) && !string.IsNullOrWhiteSpace(destination))
+    {
+        selectedFlight.Origin = origin;
+        selectedFlight.Destination = destination;
+        selectedFlight.ExpectedTime = newTime;
+        Console.WriteLine("Flight updated!");
+    }
+    else
+    {
+        Console.WriteLine("Flight not updated!");
+    }
+}
+
+// for modification choice 2
+void ModifyStatus(Flight selectedFlight)
+{
+    Console.Write("Enter new Status: ");
+    string status = Console.ReadLine();
+    if (!string.IsNullOrWhiteSpace(status))
+    {
+        selectedFlight.Status = status;
+        Console.WriteLine("Status updated successfully!");
+    }
+    else
+    {
+        Console.WriteLine("Status not updated successfully!");
+    }
+}
+
+// for modification choice 3
+void ModifySpecialRequestCode(Flight selectedFlight)
+{
+    Console.Write("Enter new Special Request Code: ");
+    string requestCode = Console.ReadLine();
+    if (!string.IsNullOrWhiteSpace(requestCode))
+    {
+        selectedFlight.SpecialRequestCode = requestCode;
+        Console.WriteLine("Special Request Code updated successfully!");
+    }
+    else
+    {
+        Console.WriteLine("Special Request Code cannot be empty. Update canceled.");
+    }
+}
+
+// for modification choice 4
+void ModifyBoardingGate(Flight selectedFlight)
+{
+    Console.Write("Enter new Boarding Gate: ");
+    string gate = Console.ReadLine();
+    if (!string.IsNullOrWhiteSpace(gate))
+    {
+        selectedFlight.BoardingGate = new BoardingGate(gate, false, false, false);
+        Console.WriteLine("Boarding Gate updated successfully!");
+    }
+    else
+    {
+        Console.WriteLine("Boarding Gate not updated successfully!");
+    }
+}
+
+
 
 // delete the flight for choice 2
 void DeleteFlight(Airline selectedAirline, Flight selectedFlight)
@@ -333,17 +363,18 @@ void DeleteFlight(Airline selectedAirline, Flight selectedFlight)
     }
 }
 
+
 // display the updated flight details
 void DisplayFlightDetails(Flight flight)
 {
     Console.WriteLine($"\nFlight Number: {flight.FlightNumber}");
-    Console.WriteLine($"Airline Name: {flight.AirlineCode}");
+    Console.WriteLine($"Airline Name: {(airlineList.TryGetValue(selectedFlight, out var airline) ? airline.Name :"Not Found")}");
     Console.WriteLine($"Origin: {flight.Origin}");
     Console.WriteLine($"Destination: {flight.Destination}");
     Console.WriteLine($"Expected Departure/Arrival Time: {flight.ExpectedTime:dd/MM/yyyy hh:mm tt}");
     Console.WriteLine($"Status: {flight.Status}");
-    Console.WriteLine($"Special Request Code: {string.IsNullOrEmpty(flight.Specia lRequestCode) ? "None" : flight.SpecialRequestCode}");
-    Console.WriteLine($"Boarding Gate: {(flight.Boardi ngGate != null ? flight.Boarding Gate.GateName : "Unassigned")}");
+    Console.WriteLine($"Special Request Code: {(flightdict.TryGetValue("SpecialRequestCode", out var specialRequestCode) && !string.IsNullOrEmpty(specialRequestCode) ? specialRequestCode : "None")}");
+    Console.WriteLine($"Boarding Gate: {(boardingGateList.TryGetValue(selectedFlight, out var boardingGate) ? boardingGate : "Unassigned")}");
 }
 
 
