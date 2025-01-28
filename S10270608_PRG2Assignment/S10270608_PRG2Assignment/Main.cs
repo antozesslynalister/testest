@@ -348,17 +348,79 @@ void DisplayFlightDetails(Flight flight)
 
 
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Main Program : display menu and runs the entire program
+void DisplayMenu()
+{
+    Console.WriteLine("=============================================Welcome to Changi Airport Terminal 5=============================================");
+    Console.WriteLine("1. List All Flights");
+    Console.WriteLine("2. List Boarding Gates");
+    Console.WriteLine("3. Assign a Boarding Gate to a Flight");
+    Console.WriteLine("4. Create Flight");
+    Console.WriteLine("5. Display Airline Flights");
+    Console.WriteLine("6. Modify Flight Details");
+    Console.WriteLine("7. Display Flight Schedule");
+    Console.WriteLine("0. Exit");
+}
+void Main()
+{
+    string option = "";
+    while (option != "0")
+    {
+        DisplayMenu();
+        Console.Write("Enter your option: ");
+        option = Console.ReadLine();
+        if (option == "1")
+        {
 
+        }
+        else if (option == "2")
+        {
 
+        }
+        else if (option == "3")
+        {
 
+        }
+        else if (option == "4")
+        {
 
+        }
+        else if (option == "5")
+        {
 
+        }
+        else if (option == "6")
+        {
+            NewFlight();
+            Console.Write("Would you like to add another flight? (Y/N)");
+            string anotherFlight = Console.ReadLine().ToUpper();
+            if (anotherFlight == "Y")
+            {
+                NewFlight();
+            }
+            else if (anotherFlight == "N")
+            {
+                { break; }
+            }
+            else
+            {
+                Console.WriteLine("Invalid Option!");
+            }
+        }
+        else if (option == "7")
+        {
 
-
-
-
-
+        }
+        else if (option == "0")
+        {
+            { break; }
+        }
+        else
+        { Console.WriteLine("Invalid option! Choose an option from 0 - 7"); }
+    }
+}
 
 
 
@@ -366,7 +428,7 @@ void DisplayFlightDetails(Flight flight)
 // DO NOT TOUCH JOELY LIM 
 
 // Basic feature 2 : Load files (flights)
-Dictionary<string, Flight> flightlist = new Dictionary<string, Flight>();
+Dictionary<string, Flight> flightdict = new Dictionary<string, Flight>();
 void Load_Flight()
 {
     Console.WriteLine("Loading Flights...");
@@ -384,21 +446,21 @@ void Load_Flight()
             if (code == "DDJB")
             {
                 Flight ddjb_flight = new DDJBFlight(flight_num, origin, destination, expected_time);
-                flightlist.Add(flight_num, ddjb_flight);
+                flightdict.Add(flight_num, ddjb_flight);
             }
             else if (code =="LWTT")
             {
                 Flight lwtt_flight = new LWTTFlight(flight_num, origin, destination, expected_time);
-                flightlist.Add(flight_num, lwtt_flight);
+                flightdict.Add(flight_num, lwtt_flight);
             }
             else if (code =="CFFT")
             {
                 Flight cfft_flight = new CFFTFlight(flight_num, origin, destination, expected_time);
-                flightlist.Add(flight_num, cfft_flight);
+                flightdict.Add(flight_num, cfft_flight);
             }
         }
     }
-    Console.WriteLine($"{flightlist.Count} flights loaded!");
+    Console.WriteLine($"{flightdict.Count} flights loaded!");
 }
 
 
@@ -406,7 +468,7 @@ void Load_Flight()
 void Display_Flights()
 {
     Console.WriteLine("{0, -15}{1, -15}{2, -15}{3, -15}{4, -15}", "Flight Number: ", "Origin: ", "Destination", "Expected Time: ");
-    foreach (KeyValuePair<string, Flight> flight in flightlist)
+    foreach (KeyValuePair<string, Flight> flight in flightdict)
     {
         Console.WriteLine("{ 0, -15}, { 1, -15}, { 2, -15}, { 3, -15}, { 4, -15}", (flight.Key), (flight.Value.Origin), (flight.Value.Destination), (flight.Value.ExpectedTime));
     }
@@ -423,7 +485,7 @@ void BoardingGateToFlight()
     string boarding_gate = Console.ReadLine();
     if boardingGateList.Flight != null)
     {
-        foreach (KeyValuePair<string, Flight> flight in flightlist)
+        foreach (KeyValuePair<string, Flight> flight in flightdict)
         {
             if (flightnum == flight.Key)
             {
@@ -477,7 +539,7 @@ void BoardingGateToFlight()
                 Console.WriteLine("3. On Time");
                 Console.Write("Please select the new status of the flight: ");
                 string statusChoice = Console.ReadLine();
-                foreach (KeyValuePair<string, Flight> flight in flightlist)
+                foreach (KeyValuePair<string, Flight> flight in flightdict)
                 {
                     if (flightnum == flight.Key)
                     {
@@ -506,9 +568,65 @@ void BoardingGateToFlight()
 }
 
 // Basic Feature 6 : Create a new flight
-
-
-
+void NewFlight()
+{
+    Console.Write("Enter Flight Number: ");
+    string flightNum = Console.ReadLine();
+    Console.Write("Enter Origin: ");
+    string flightOrigin = Console.ReadLine();
+    Console.Write("Enter Destination: ");
+    string flightDestination = Console.ReadLine();
+    Console.Write("Enter Expected Departure/Arrival Time (dd:mm:yyyy hh:mm): ");
+    DateTime flightTime = DateTime.Parse(Console.ReadLine());
+    Console.Write("Enter Special Request Code (CFFT/DDJB/LWTT/None): ");
+    string code = Console.ReadLine().ToUpper();
+    Flight newFlight = null;
+    if (code == "DDJB")
+    {
+        newFlight = new DDJBFlight(flightNum, flightOrigin, flightDestination, flightTime);
+    }
+    else if (code == "CFFT")
+    {
+        newFlight = new CFFTFlight(flightNum, flightOrigin, flightDestination, flightTime);
+    }
+    else if (code == "LWTT")
+    {
+        newFlight = new LWTTFlight(flightNum, flightOrigin, flightDestination, flightTime);
+    }
+    else if (code == "NONE")
+    {
+        newFlight = new NORMFlight(flightNum, flightOrigin, flightDestination, flightTime);
+    }
+    else
+    { Console.WriteLine("Invalid option!"); }
+    if (newFlight != null)
+    {
+        flightdict.Add(flightNum, newFlight);
+        Console.WriteLine($"Flight {flightNum} has been added!");
+    }
+    using (StreamWriter sw = new StreamWriter("flights.csv"))
+    {
+        if (code == "NONE")
+        {
+            string addFlight = flightNum + "," + flightOrigin + "," + flightDestination + "," + flightTime + ",";
+            sw.WriteLine(addFlight);
+        }
+        else
+        {
+            string addFlight = flightNum + "," + flightOrigin + "," + flightDestination + "," + flightTime + "," + code;
+            sw.WriteLine(addFlight);
+        }
+    }
+}
 
 
 // Basic Feature 9 : Display scheduled flights in chronological order, with boarding gates assignments where applicable
+void SortedFlights()
+{
+    List <Flight> flights = new List <Flight>();
+    foreach (KeyValuePair<string, Flight> flight in flightdict)
+    {
+        flights.Add(flight.Value);
+    }
+    flights.Sort();
+}

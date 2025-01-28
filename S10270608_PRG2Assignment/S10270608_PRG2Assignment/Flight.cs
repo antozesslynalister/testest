@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace S10270608_PRG2Assignment
 {
-    public abstract class Flight
+    public abstract class Flight : IComparable<Flight>
     {
         private string flightNumber;
         private string origin;
@@ -58,6 +58,10 @@ namespace S10270608_PRG2Assignment
         public override string ToString()
         {
             return $"{FlightNumber}\t{Origin}\t{Destination}\t{ExpectedTime}\t{Status}\t";
+        }
+        public int CompareTo(Flight other)
+        {
+            return ExpectedTime.CompareTo(other.ExpectedTime);
         }
     }
 }
