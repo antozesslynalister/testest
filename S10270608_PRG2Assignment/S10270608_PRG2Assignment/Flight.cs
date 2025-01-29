@@ -46,6 +46,7 @@ namespace S10270608_PRG2Assignment
             get { return status; }
             set { status = value; }
         }
+
         public Flight() { }
         public Flight(string fn, string o, string d, DateTime et)
         {

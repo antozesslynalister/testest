@@ -115,7 +115,7 @@ void DisplayBoardingGates(Terminal terminal)
 }
 
 // Basic Feature 7 : Display full flight details from an airline (
-void DisplayFlightDetails(Terminal terminal)
+void DisplayFullFlightDetails(Terminal terminal)
 {
     Console.WriteLine("=============================================");
     Console.WriteLine("List of Airlines for Changi Airport Terminal 5");
@@ -150,7 +150,7 @@ void DisplayFlightDetails(Terminal terminal)
             Console.WriteLine($"Destination: {selectedFlight.Destination}");
             Console.WriteLine($"Expected Departure/Arrival Time: {selectedFlight.ExpectedTime}");
             Console.WriteLine($"Special Request Code: {selectedFlight.Status ?? "None"}");
-            Console.WriteLine($"Boarding Gate: {selectedFlight.BoardingGate?.GateName ?? "Unassigned"}");
+            Console.WriteLine($"Boarding Gate: {selectedFlight.boardingGate?.GateName ?? "Unassigned"}");
         }
         else
         {
@@ -270,7 +270,8 @@ void ModifyFlight(Airline selectedAirline, Flight selectedFlight)
     }
 
     Console.WriteLine("Flight updated!");
-    DisplayFlightDetails(selectedFlight);
+    DisplayFlightDetails(selectedFlight, selectedAirline, boardingGateList); // Pass the updated values
+
 }
 
 // for modification choice 1 
@@ -315,11 +316,12 @@ void ModifyStatus(Flight selectedFlight)
 // for modification choice 3
 void ModifySpecialRequestCode(Flight selectedFlight)
 {
+    string SpecialRequestCode = "";
     Console.Write("Enter new Special Request Code: ");
     string requestCode = Console.ReadLine();
     if (!string.IsNullOrWhiteSpace(requestCode))
     {
-        selectedFlight.SpecialRequestCode = requestCode;
+        selectedFlight.specialRequestCode = requestCode;
         Console.WriteLine("Special Request Code updated successfully!");
     }
     else
@@ -335,7 +337,7 @@ void ModifyBoardingGate(Flight selectedFlight)
     string gate = Console.ReadLine();
     if (!string.IsNullOrWhiteSpace(gate))
     {
-        selectedFlight.BoardingGate = new BoardingGate(gate, false, false, false);
+        selectedFlight.boardingGate = new BoardingGate(gate, false, false, false);
         Console.WriteLine("Boarding Gate updated successfully!");
     }
     else
@@ -343,6 +345,7 @@ void ModifyBoardingGate(Flight selectedFlight)
         Console.WriteLine("Boarding Gate not updated successfully!");
     }
 }
+
 
 
 
@@ -363,19 +366,83 @@ void DeleteFlight(Airline selectedAirline, Flight selectedFlight)
     }
 }
 
-
-// display the updated flight details
-void DisplayFlightDetails(Flight flight)
+void DisplayFlightDetails(Flight flight, Airline selectedAirline, Dictionary<string, BoardingGate> boardingGateList)
 {
     Console.WriteLine($"\nFlight Number: {flight.FlightNumber}");
-    Console.WriteLine($"Airline Name: {(airlineList.TryGetValue(selectedFlight, out var airline) ? airline.Name :"Not Found")}");
+    Console.WriteLine($"Airline Name: {selectedAirline.Name}");
     Console.WriteLine($"Origin: {flight.Origin}");
     Console.WriteLine($"Destination: {flight.Destination}");
     Console.WriteLine($"Expected Departure/Arrival Time: {flight.ExpectedTime:dd/MM/yyyy hh:mm tt}");
     Console.WriteLine($"Status: {flight.Status}");
-    Console.WriteLine($"Special Request Code: {(flightdict.TryGetValue("SpecialRequestCode", out var specialRequestCode) && !string.IsNullOrEmpty(specialRequestCode) ? specialRequestCode : "None")}");
-    Console.WriteLine($"Boarding Gate: {(boardingGateList.TryGetValue(selectedFlight, out var boardingGate) ? boardingGate : "Unassigned")}");
+
+    // Handle Special Request Code
+    Console.WriteLine($"Special Request Code: {flight.specialRequestCode ?? "None"}");
+
+    // Handle Boarding Gate (Check if it exists in the boardingGateList)
+    string boardingGate = boardingGateList.ContainsKey(flight.FlightNumber) ? boardingGateList[flight.FlightNumber].GateName : "Unassigned";
+    Console.WriteLine($"Boarding Gate: {boardingGate}");
 }
+
+// Advanced Feature (b) : Display the total fee per airline for the day
+// Method to calculate and display total fee per airline for the day
+void CalculateTotalFeePerAirline(Terminal terminal)
+{
+    Console.WriteLine("=============================================");
+    Console.WriteLine("Total Fees Per Airline for the Day");
+    Console.WriteLine("=============================================");
+
+    // Check if all flights have assigned boarding gates
+    foreach (var airline in terminal.Airlines.Values)
+    {
+        foreach (var flight in airline.Flights.Values)
+        {
+            if (flight.boardingGate == null)
+            {
+                Console.WriteLine("Error: Not all flights have assigned boarding gates.");
+                Console.WriteLine("Please ensure all flights have boarding gates assigned.");
+                return;
+            }
+        }
+    }
+
+    decimal totalFees = 0;
+    decimal totalDiscounts = 0;
+
+    foreach (var airline in terminal.Airlines.Values)
+    {
+        decimal airlineSubtotal = 0;
+        decimal airlineDiscounts = 0;
+
+        // Retrieve all flights for the airline
+        foreach (var flight in airline.Flights.Values)
+        {
+            airlineSubtotal += (decimal)flight.CalculateFees();
+        }
+
+        // airline-specific discounts based on promotional conditions
+        airlineDiscounts = ComputeDiscounts(airline);
+
+        totalFees += airlineSubtotal;
+        totalDiscounts += airlineDiscounts;
+
+        Console.WriteLine($"{airline.Name}: Subtotal: ${airlineSubtotal}, Discounts: -${airlineDiscounts}, Final Total: ${airlineSubtotal - airlineDiscounts}");
+    }
+
+    // Display the overall total fees and discounts
+    Console.WriteLine("=============================================");
+    Console.WriteLine($"Total Airline Fees: ${totalFees}");
+    Console.WriteLine($"Total Airline Discounts: -${totalDiscounts}");
+    Console.WriteLine($"Final Total Fees Collected: ${totalFees - totalDiscounts}");
+    Console.WriteLine($"Discount Percentage: {((totalFees > 0) ? (totalDiscounts / totalFees) * 100 : 0):F2}%");
+}
+
+// Helper method to compute discounts for an airline
+decimal ComputeDiscounts(Airline airline)
+{
+    return airline.Flights.Count > 10 ? airline.Flights.Count * 50 : 0; // Example: $50 discount per flight if more than 10 flights
+}
+
+
 
 
 
@@ -474,6 +541,7 @@ void Load_Flight()
             string destination = data[2];
             DateTime expected_time = DateTime.Parse(data[3]);
             string code = data[4];
+
             if (code == "DDJB")
             {
                 Flight ddjb_flight = new DDJBFlight(flight_num, origin, destination, expected_time);
