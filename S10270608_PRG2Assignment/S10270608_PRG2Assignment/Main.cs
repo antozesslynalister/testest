@@ -452,13 +452,15 @@ decimal ComputeDiscounts(Airline airline)
 void DisplayMenu()
 {
     Console.WriteLine("=============================================Welcome to Changi Airport Terminal 5=============================================");
-    Console.WriteLine("1. List All Flights");
-    Console.WriteLine("2. List Boarding Gates");
-    Console.WriteLine("3. Assign a Boarding Gate to a Flight");
-    Console.WriteLine("4. Create Flight");
-    Console.WriteLine("5. Display Airline Flights");
-    Console.WriteLine("6. Modify Flight Details");
-    Console.WriteLine("7. Display Flight Schedule");
+    Console.WriteLine("1. List All Flights");  // feature 3
+    Console.WriteLine("2. List Boarding Gates");  // feature 4
+    Console.WriteLine("3. Assign a Boarding Gate to a Flight");    // feature 5
+    Console.WriteLine("4. Create Flight");     //feature 6
+    Console.WriteLine("5. Display Airline Flights");        // feature 7
+    Console.WriteLine("6. Modify Flight Details");       //feature 8
+    Console.WriteLine("7. Display Flight Schedule");      // feature 9
+    Console.WriteLine("8. Assign Flights to an Available Boarding Gate");
+    Console.WriteLine("9. Calculate the Total Amount of Airline Fees to be Charged");
     Console.WriteLine("0. Exit");
 }
 void Main()
@@ -483,14 +485,6 @@ void Main()
         }
         else if (option == "4")
         {
-
-        }
-        else if (option == "5")
-        {
-
-        }
-        else if (option == "6")
-        {
             NewFlight();
             Console.Write("Would you like to add another flight? (Y/N)");
             string anotherFlight = Console.ReadLine().ToUpper();
@@ -507,13 +501,30 @@ void Main()
                 Console.WriteLine("Invalid Option!");
             }
         }
+        else if (option == "5")
+        {
+
+        }
+        else if (option == "6")
+        {
+            
+        }
         else if (option == "7")
+        {
+            SortedFlights();
+        }
+        else if (option == "8")
+        {
+            UnassignedFlights();
+        }
+        else if (option == "9")
         {
 
         }
         else if (option == "0")
         {
-            { break; }
+            Console.WriteLine("Goodbye!");
+            break; 
         }
         else
         { Console.WriteLine("Invalid option! Choose an option from 0 - 7"); }
@@ -660,6 +671,7 @@ void BoardingGateToFlight()
 // Basic Feature 6 : Create a new flight
 void NewFlight()
 {
+    // all the inputs and saving the inputs to a variable 
     Console.Write("Enter Flight Number: ");
     string flightNum = Console.ReadLine();
     Console.Write("Enter Origin: ");
@@ -669,8 +681,10 @@ void NewFlight()
     Console.Write("Enter Expected Departure/Arrival Time (dd:mm:yyyy hh:mm): ");
     DateTime flightTime = DateTime.Parse(Console.ReadLine());
     Console.Write("Enter Special Request Code (CFFT/DDJB/LWTT/None): ");
-    string code = Console.ReadLine().ToUpper();
-    Flight newFlight = null;
+    string code = Console.ReadLine().ToUpper();                               // making the code input all uppercase 
+    Flight newFlight = null;                                                  // setting the flight to null first as the new flight has not been added yet 
+
+    //assigning the flights to the correct class based on their special request code
     if (code == "DDJB")
     {
         newFlight = new DDJBFlight(flightNum, flightOrigin, flightDestination, flightTime);
@@ -689,19 +703,19 @@ void NewFlight()
     }
     else
     { Console.WriteLine("Invalid option!"); }
-    if (newFlight != null)
+    if (newFlight != null)                                  // the flight has been successfully added
     {
         flightdict.Add(flightNum, newFlight);
         Console.WriteLine($"Flight {flightNum} has been added!");
     }
-    using (StreamWriter sw = new StreamWriter("flights.csv"))
+    using (StreamWriter sw = new StreamWriter("flights.csv"))                  // adding the new flight into the csv file 
     {
-        if (code == "NONE")
+        if (code == "NONE")                                         // if there is no special request code, the format has no code at the end
         {
             string addFlight = flightNum + "," + flightOrigin + "," + flightDestination + "," + flightTime + ",";
             sw.WriteLine(addFlight);
         }
-        else
+        else                                                     // if there is a special request code, the format includes the code at the end 
         {
             string addFlight = flightNum + "," + flightOrigin + "," + flightDestination + "," + flightTime + "," + code;
             sw.WriteLine(addFlight);
@@ -709,14 +723,118 @@ void NewFlight()
     }
 }
 
-
 // Basic Feature 9 : Display scheduled flights in chronological order, with boarding gates assignments where applicable
 void SortedFlights()
 {
-    List <Flight> flights = new List <Flight>();
-    foreach (KeyValuePair<string, Flight> flight in flightdict)
+    List <Flight> flightlist = new List <Flight>(flightdict.Values);                     // making a list to Sort() it
+
+    flightlist.Sort();                                                         // sorting the flight list by the scheduled time
+
+    Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", "Flight Number", "Airline Name", "Origin", "Destination", "Expected Departure/Arrival Time", "Status", "Boarding Gate");  // display flight headers
+    foreach (Flight flight in flightlist)
     {
-        flights.Add(flight.Value);
+        string gate = "";
+        string flightname = "";
+        if (airlineList.ContainsKey(flight.FlightNumber))
+        {
+            flightname = airlineList[flight.FlightNumber].Name;              // to retrieve the flight name and display it later
+        }
+
+        foreach (BoardingGate gates in boardingGateList.Values)
+        {
+            if (gates.Flight == flight)                                     // if the gate has been assigned 
+            {
+                gate = gates.GateName;                                      // retrieve the gate name for displaying later 
+                break;
+            }
+            else                                                           // if the gate has not been assigned
+            {
+                gate = "Unassigned";                                          
+            }
+        }
+        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", (flight.FlightNumber),(flightname),(flight.Origin),(flight.Destination),(flight.ExpectedTime),(flight.Status), (gate)); // display the details 
     }
-    flights.Sort();
+}
+
+// Advanced feature (a) : process all unassigned flights to boarding gates in bulk
+void UnassignedFlights()
+{
+    Queue <Flight> unassignedFlights = new Queue<Flight>();                        // making the unassigned flights Queue
+    List <BoardingGate> unassignedGates = new List<BoardingGate>();                 // making the unassigned gates List
+    foreach (Flight flight in flightdict.Values)
+    {
+        bool hasGate = false;                                                    // checking whether the flight has a gate assigned to it or not 
+        foreach (BoardingGate gate in boardingGateList.Values)
+        {
+            if (gate.Flight == flight)                                           // if the gate has a flight assigned to it 
+            {
+                hasGate = true;                                                  // then it has a gate
+                break;
+            }
+        }
+        if (!hasGate)                                                            // if it does not have a gate
+        {
+            unassignedFlights.Enqueue(flight);                                   // add it to the unassigned flights Queue
+        }
+    }
+    Console.WriteLine($"Number of unassigned flights: {unassignedFlights.Count}");            // display the number of unassigned flights
+
+    foreach (BoardingGate gate in boardingGateList.Values)
+    {
+        if (gate.Flight == null)                                                //if the gate does not have a flight assigned to it 
+        {
+            unassignedGates.Add(gate);                                          // add it to the unassigned gates List
+        }
+    }
+    Console.WriteLine($"Number of unassigned gates: {unassignedGates.Count}");     // display the number of unassigned gates
+    double unassignedFlightCount = unassignedFlights.Count;                        // count the number of unassigned flights
+    double unassignedGateCount = unassignedGates.Count;                            // count of the number of unassigned gates
+    double assignedFlightCount = 0;                                               // set the number of assigned flights to 0
+    double assignedGateCount = 0;                                                 // set he number of assigned gates to 0
+    while (unassignedFlights.Count > 0 && unassignedGates.Count > 0)              // while the Queue and List still has flights and gates respectively
+    {
+        Flight assignedFlight = unassignedFlights.Dequeue();                      // taking the first flight in the Queue
+        BoardingGate assignedGate = unassignedGates[0];                           // taking the flight gate in the List
+        bool assigned = false;
+
+        if (assignedFlight is CFFTFlight && assignedGate.SupportsCFFT)            // assigning the gate that supports CFFT to the flight that needs CFFT
+        {
+            assignedGate.Flight = assignedFlight;
+            assigned = true;
+        }
+        else if (assignedFlight is DDJBFlight)                                    // assigning the gate that supports DDJB to the flight that needs DDJB
+        {
+            if (assignedGate.SupportsDDJB && assignedGate.SupportsDDJB)
+            {
+                assignedGate.Flight = assignedFlight;
+                assigned = true;
+            }
+        }
+        else if (assignedFlight is LWTTFlight && assignedGate.SupportsLWTT)      // assigning the gate that supports LWTT to the flight that needs LWTT
+        {
+            assignedGate.Flight = assignedFlight;
+            assigned = true;
+        }
+        else if (assignedFlight is NORMFlight && (!assignedGate.SupportsCFFT && !assignedGate.SupportsDDJB && !assignedGate.SupportsLWTT))  // assigning a gate that supports none of the special request codes to the flight that has no special request code
+        {
+            assignedGate.Flight = assignedFlight;
+            assigned = true;
+        }
+        if (assigned)                                                             // once it is assigned,
+        {
+            unassignedGates.Remove(assignedGate);                                 // remove the gate from the List
+            assignedFlightCount++;                                                // the number of flights assigned increases by 1
+            assignedGateCount++;                                                  // the number of gates assigned increases by 1
+        }
+        else                                                                      // if not assigned
+        {
+            unassignedFlights.Enqueue(assignedFlight);                            // add the flight back into the queue
+        }
+    }
+    Console.WriteLine($"Number of flights processed: {assignedFlightCount}");     // display the number of assigned flights
+    Console.WriteLine($"Number of gates processed: {assignedGateCount}");         // display the number of assigned gates
+    double percentageFlights = (assignedFlightCount/ flightdict.Count) * 100;     // calculate the percentage of the number of flights assigned over the total number of flights at first 
+    double percentageGates = (assignedGateCount/ boardingGateList.Count) * 100;   // calculate the percentage of the number of gates assigned over the total number of gates at first 
+    Console.WriteLine($"The percentage of flights processed: {percentageFlights}");  // display the flight percentage
+    Console.WriteLine($"The percentage of gates processed: {percentageGates}");      // display the gates percentage 
 }

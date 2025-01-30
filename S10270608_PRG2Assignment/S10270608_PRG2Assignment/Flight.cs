@@ -47,6 +47,10 @@ namespace S10270608_PRG2Assignment
             set { status = value; }
         }
 
+        //for features 7 and 8
+        public string SpecialRequestCode { get; set; }
+        public BoardingGate boardingGate { get; set; }
+
         public Flight() { }
         public Flight(string fn, string o, string d, DateTime et)
         {
@@ -54,6 +58,10 @@ namespace S10270608_PRG2Assignment
             Origin = o;
             Destination = d;
             ExpectedTime = et;
+
+            //for features 7 and 8
+            SpecialRequestCode = "";
+            boardingGate = null;
         }
         public abstract double CalculateFees();
         public override string ToString()
