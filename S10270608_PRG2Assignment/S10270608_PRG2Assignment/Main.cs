@@ -613,6 +613,8 @@ decimal ComputeDiscounts(Airline airline)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Main Program : display menu and runs the entire program
+Dictionary<string, Flight> flightdict = new Dictionary<string, Flight>();
+
 void DisplayMenu()
 {
     Console.WriteLine("=============================================Welcome to Changi Airport Terminal 5=============================================");
@@ -627,8 +629,13 @@ void DisplayMenu()
     Console.WriteLine("9. Calculate the Total Amount of Airline Fees to be Charged");
     Console.WriteLine("0. Exit");
 }
-void Main()
+void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate> boardingGateList, Dictionary<string, Airline> airlineList)
 {
+    //Loading the files
+    Load_Flight();
+    Load_BoardingGates();
+    Load_Airlines();
+
     string option = "";
     while (option != "0")
     {
@@ -694,19 +701,20 @@ void Main()
         { Console.WriteLine("Invalid option! Choose an option from 0 - 7"); }
     }
 }
-
+Main(flightdict, boardingGateDict, airlineDict);
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DO NOT TOUCH JOELY LIM 
 
 // Basic feature 2 : Load files (flights)
-Dictionary<string, Flight> flightdict = new Dictionary<string, Flight>();
+//Dictionary<string, Flight> flightdict = new Dictionary<string, Flight>();
 void Load_Flight()
 {
     Console.WriteLine("Loading Flights...");
     using (StreamReader sr = new StreamReader("flights.csv"))
     {
+        sr.ReadLine();
         string? s;
         while ((s = sr.ReadLine()) != null)
         {
@@ -762,12 +770,12 @@ void BoardingGateToFlight()
 
     Console.Write("Enter Boarding Gate Name: ");
     string boarding_gate = Console.ReadLine();
-    if (!boardingGateList.ContainsKey(boarding_gate))            //check if boarding gate typed in exists
+    if (!boardingGateDict.ContainsKey(boarding_gate))            //check if boarding gate typed in exists
     {
         Console.WriteLine("Boarding Gate does not exist!");
         return;
     }
-    if (boardingGateList[boarding_gate].Flight != null)        //check if boarding gate has been assigned before
+    if (boardingGateDict[boarding_gate].Flight != null)        //check if boarding gate has been assigned before
     {
         Console.WriteLine("This boarding gate has already been assigned to another flight!");
         return;
@@ -796,9 +804,9 @@ void BoardingGateToFlight()
     {
         Console.WriteLine("Special Request Code: CFFT");
     }
-    bool supportDDJB = boardingGateList[boarding_gate].SupportsDDJB;             // displaying of the boarding gate
-    bool supportCFFT = boardingGateList[boarding_gate].SupportsCFFT;
-    bool supportLWTT = boardingGateList[boarding_gate].SupportsLWTT;
+    bool supportDDJB = boardingGateDict[boarding_gate].SupportsDDJB;             // displaying of the boarding gate
+    bool supportCFFT = boardingGateDict[boarding_gate].SupportsCFFT;
+    bool supportLWTT = boardingGateDict[boarding_gate].SupportsLWTT;
     Console.WriteLine($"Boarding Gate Name: {boarding_gate}");
     Console.WriteLine($"Support DDJB: {supportDDJB}");
     Console.WriteLine($"Supports CFFT: {supportCFFT}");
@@ -807,29 +815,30 @@ void BoardingGateToFlight()
 
     Console.Write("Would you like to update the status of the flight? (Y/N)");            // changing the status of the flight
     string choice = Console.ReadLine();
-    if (choice == "Y")
+    if (choice == "Y")                                                                  //if they would like to update the status of the flight
     {
         Console.WriteLine("1. Delayed");
         Console.WriteLine("2. Boarding");
         Console.WriteLine("3. On Time");
-        Console.Write("Please select the new status of the flight: ");
+        Console.Write("Please select the new status of the flight: ");                    // options to update
         string statusChoice = Console.ReadLine();
-        if (statusChoice == "1")
+        if (statusChoice == "1")                                                          // updating the status 
         { flightdict[flightnum].Status = "Delayed"; }
         else if (statusChoice == "2")
         { flightdict[flightnum].Status = "Boarding"; }
         else if (statusChoice == "3")
         { flightdict[flightnum].Status = "On Time"; }
         else
-        { Console.WriteLine("Invalid choice. Status is not updated."); }
-        Console.WriteLine($"Flight {flightnum} has been assigned to Boarding Gate {boarding_gate}!");
+        { Console.WriteLine("Invalid choice. Status is not updated."); }                                      //if they did not choose an option from 1 - 3
     }
 
     else if (choice == "N")
     {
-        Console.WriteLine($"Flight {flightnum} has been assigned to Boarding Gate {boarding_gate}!");
+        Console.WriteLine("Invalid option. Type in Y or N.");
     }
-    boardingGateList[boarding_gate].Flight = flightdict[flightnum];     //WHY THO?
+    Console.WriteLine($"Flight {flightnum} has been assigned to Boarding Gate {boarding_gate}!");        // display that it has been updated
+
+    boardingGateDict[boarding_gate].Flight = flightdict[flightnum];     // assigning the boarding gate to the flight
 }
 
 // Basic Feature 6 : Create a new flight
@@ -890,7 +899,7 @@ void NewFlight()
 // Basic Feature 9 : Display scheduled flights in chronological order, with boarding gates assignments where applicable
 void SortedFlights()
 {
-    List <Flight> flightlist = new List <Flight>(flightdict.Values);                     // making a list to Sort() it
+    List<Flight> flightlist = new List<Flight>(flightdict.Values);                     // making a list to Sort() it
 
     flightlist.Sort();                                                         // sorting the flight list by the scheduled time
 
@@ -898,13 +907,13 @@ void SortedFlights()
     foreach (Flight flight in flightlist)
     {
         string gate = "";
-        string flightname = "";
-        if (airlineList.ContainsKey(flight.FlightNumber))
-        {
-            flightname = airlineList[flight.FlightNumber].Name;              // to retrieve the flight name and display it later
+        string flightname = "Unknown airline";                               // by default, the airline does not exist
+        if (airlineDict.ContainsKey(flight.FlightNumber))                    // checking if the airline exists
+        {                                                                    // if it does, the flight name will change
+            flightname = airlineDict[flight.FlightNumber].Name;              // to retrieve the flight name and display it later
         }
 
-        foreach (BoardingGate gates in boardingGateList.Values)
+        foreach (BoardingGate gates in boardingGateDict.Values)
         {
             if (gates.Flight == flight)                                     // if the gate has been assigned 
             {
@@ -913,22 +922,32 @@ void SortedFlights()
             }
             else                                                           // if the gate has not been assigned
             {
-                gate = "Unassigned";                                          
+                gate = "Unassigned";
             }
         }
-        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", (flight.FlightNumber),(flightname),(flight.Origin),(flight.Destination),(flight.ExpectedTime),(flight.Status), (gate)); // display the details 
+        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", (flight.FlightNumber), (flightname), (flight.Origin), (flight.Destination), (flight.ExpectedTime), (flight.Status), (gate)); // display the details 
     }
 }
 
 // Advanced feature (a) : process all unassigned flights to boarding gates in bulk
 void UnassignedFlights()
 {
+    if (flightdict.Count == 0)
+    {
+        Console.WriteLine("There are no flights to process.");
+        return;
+    }
+    if (boardingGateDict.Count == 0)
+    {
+        Console.WriteLine("There are no boarding gates to process.");
+        return;
+    }
     Queue<Flight> unassignedFlights = new Queue<Flight>();                        // making the unassigned flights Queue
     List<BoardingGate> unassignedGates = new List<BoardingGate>();                 // making the unassigned gates List
     foreach (Flight flight in flightdict.Values)
     {
         bool hasGate = false;                                                    // checking whether the flight has a gate assigned to it or not 
-        foreach (BoardingGate gate in boardingGateList.Values)
+        foreach (BoardingGate gate in   boardingGateDict.Values)
         {
             if (gate.Flight == flight)                                           // if the gate has a flight assigned to it 
             {
@@ -943,7 +962,7 @@ void UnassignedFlights()
     }
     Console.WriteLine($"Number of unassigned flights: {unassignedFlights.Count}");            // display the number of unassigned flights
 
-    foreach (BoardingGate gate in boardingGateList.Values)
+    foreach (BoardingGate gate in boardingGateDict.Values)
     {
         if (gate.Flight == null)                                                //if the gate does not have a flight assigned to it 
         {
@@ -998,7 +1017,7 @@ void UnassignedFlights()
     Console.WriteLine($"Number of flights processed: {assignedFlightCount}");     // display the number of assigned flights
     Console.WriteLine($"Number of gates processed: {assignedGateCount}");         // display the number of assigned gates
     double percentageFlights = (assignedFlightCount / flightdict.Count) * 100;     // calculate the percentage of the number of flights assigned over the total number of flights at first 
-    double percentageGates = (assignedGateCount / boardingGateList.Count) * 100;   // calculate the percentage of the number of gates assigned over the total number of gates at first 
+    double percentageGates = (assignedGateCount / boardingGateDict.Count) * 100;   // calculate the percentage of the number of gates assigned over the total number of gates at first 
     Console.WriteLine($"The percentage of flights processed: {percentageFlights}");  // display the flight percentage
     Console.WriteLine($"The percentage of gates processed: {percentageGates}");      // display the gates percentage 
 }
