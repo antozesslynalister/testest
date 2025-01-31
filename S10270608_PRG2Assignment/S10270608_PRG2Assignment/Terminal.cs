@@ -77,44 +77,5 @@ namespace S10270608_PRG2Assignment
         {
             return $"Terminal: {TerminalName}, Airlines: {Airlines.Count}, Flights: {Flights.Count}, Boarding Gates: {BoardingGates.Count}";
         }
-
-        //public void LoadAirlinesFromCSV(string fileName)
-        //{
-        //    string[] lines = File.ReadAllLines("airlines.csv");
-        //    foreach (var line in lines)
-        //    {
-        //        var columns = line.Split(',');
-        //        if (columns.Length == 2)
-        //        {
-        //            var airlineCode = columns[0].Trim();
-        //            var airlineName = columns[1].Trim();
-        //            var airline = new Airline(airlineCode, airlineName);
-        //            AddAirline(airline); // add  airline to airlines dictionary
-        //        }
-        //    }
-        //    Console.WriteLine("Airlines loaded successfully.");
-        //}
-
-        //public void LoadBoardingGatesFromCSV(string fileName)
-        //{
-        //    string[] lines = File.ReadAllLines("boardinggates.csv");
-
-        //    foreach (var line in lines)
-        //    {
-        //        var columns = line.Split(',');
-        //        if (columns.Length == 4)
-        //        {
-        //            var gateName = columns[0].Trim();
-        //            var supportsCFFT = bool.Parse(columns[1].Trim());
-        //            var supportsDDJB = bool.Parse(columns[2].Trim());
-        //            var supportsLWTT = bool.Parse(columns[3].Trim());
-
-        //            var boardingGate = new BoardingGate(gateName, supportsCFFT, supportsDDJB, supportsLWTT, Flight);
-        //                //Flight = Flights.ContainsKey(FlightNumber) ? Flights[FlightNumber] : null // assign flight if exists
-        //           AddBoardingGate(boardingGate); // add boarding gate to BoardingGates dictionary
-        //        }
-        //    }
-        //    Console.WriteLine("Boarding gates loaded successfully.");
-        //}
     }
 }
