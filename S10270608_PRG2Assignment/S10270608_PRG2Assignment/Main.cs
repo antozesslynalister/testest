@@ -573,7 +573,7 @@ void CalculateTotalFeePerAirline()
 
 
                 // airline-specific discounts based on promotional conditions
-                airlineDiscounts = ComputeDiscounts(airline);
+                //airlineDiscounts = ComputeDiscounts(airline);
 
                 totalFees += airlineSubtotal;
                 totalDiscounts += airlineDiscounts;
@@ -602,10 +602,10 @@ void CalculateTotalFeePerAirline()
 }
 
 // Helper method to compute discounts for an airline
-decimal ComputeDiscounts(Airline airline)
-{
+//decimal ComputeDiscounts(Airline airline)
+//{
 
-}
+//}
 
 
 
@@ -644,7 +644,7 @@ void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate
         option = Console.ReadLine();
         if (option == "1")
         {
-
+            DisplayFlights();
         }
         else if (option == "2")
         {
@@ -714,7 +714,7 @@ void Load_Flight()
     Console.WriteLine("Loading Flights...");
     using (StreamReader sr = new StreamReader("flights.csv"))
     {
-        sr.ReadLine();
+        sr.ReadLine();                                              // skip header 
         string? s;
         while ((s = sr.ReadLine()) != null)
         {
@@ -739,6 +739,11 @@ void Load_Flight()
             {
                 Flight cfft_flight = new CFFTFlight(flight_num, origin, destination, expected_time);
                 flightdict.Add(flight_num, cfft_flight);
+            }
+            else
+            {
+                Flight norm_flight = new NORMFlight(flight_num, origin, destination, expected_time);
+                flightdict.Add(flight_num, norm_flight);
             }
         }
     }

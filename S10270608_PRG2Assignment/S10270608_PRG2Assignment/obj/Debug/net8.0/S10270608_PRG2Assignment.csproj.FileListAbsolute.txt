@@ -8,3 +8,13 @@ C:\Users\antozesslyn\OneDrive - Ngee Ann Polytechnic\Documents\DATA SCIENCE\! oc
 C:\Users\antozesslyn\OneDrive - Ngee Ann Polytechnic\Documents\DATA SCIENCE\! oct 24\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\S10270608_PRG2Assignment.AssemblyInfo.cs
 C:\Users\antozesslyn\OneDrive - Ngee Ann Polytechnic\Documents\DATA SCIENCE\! oct 24\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\S10270608_PRG2Assignment.csproj.CoreCompileInputs.cache
 C:\Users\antozesslyn\OneDrive - Ngee Ann Polytechnic\Documents\DATA SCIENCE\! oct 24\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\S10270608_PRG2Assignment.sourcelink.json
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\bin\Debug\net8.0\S10270608_PRG2Assignment.exe
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\bin\Debug\net8.0\S10270608_PRG2Assignment.deps.json
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\bin\Debug\net8.0\S10270608_PRG2Assignment.runtimeconfig.json
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\bin\Debug\net8.0\S10270608_PRG2Assignment.dll
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\bin\Debug\net8.0\S10270608_PRG2Assignment.pdb
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\S10270608_PRG2Assignment.dll
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\refint\S10270608_PRG2Assignment.dll
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\S10270608_PRG2Assignment.pdb
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\S10270608_PRG2Assignment.genruntimeconfig.cache
+C:\Users\yloej\OneDrive - Ngee Ann Polytechnic\Documents\GitHub\S10270608_PRG2Assignment\S10270608_PRG2Assignment\S10270608_PRG2Assignment\obj\Debug\net8.0\ref\S10270608_PRG2Assignment.dll
