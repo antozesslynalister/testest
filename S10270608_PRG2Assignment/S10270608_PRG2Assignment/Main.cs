@@ -7,6 +7,7 @@
 
 using S10270608_PRG2Assignment;
 using System.Net;
+using System.Runtime.InteropServices;
 
 
 // Basic feature 1 : Load files (airlines and boarding gates) 
@@ -121,9 +122,13 @@ void Load_Flight()
     using (StreamReader sr = new StreamReader("flights.csv"))
     {
         sr.ReadLine();                                              // skip header 
-        string? s;
+        string? s; 
         while ((s = sr.ReadLine()) != null)
         {
+            if ((string.IsNullOrEmpty(s)))              // to prevent any any error caused by empty new lines
+            {
+                break;
+            }
             string[] data = s.Split(",");
             string flight_num = data[0];
             string origin = data[1];
@@ -155,6 +160,7 @@ void Load_Flight()
     }
     Console.WriteLine($"{flightdict.Count} flights loaded!");
 }
+
 
 // Basic feature 3 : List all flights with their basic information
 void Display_Flights()
@@ -381,6 +387,25 @@ void NewFlight()
             sw.WriteLine(addFlight);
         }
     }
+
+    //Adding a new flight again
+    while (true)
+    {
+        Console.Write("Would you like to add another flight? (Y/N) ");
+        string anotherFlight = Console.ReadLine().ToUpper();
+        if (anotherFlight == "N")
+        {
+            break;                                 // break out of the method
+        }
+        else if (anotherFlight == "Y")
+        {
+            NewFlight();                                    // rerun the method again
+        }
+        else
+        {
+            Console.WriteLine("Invalid option. Please try again.");               // allows user to input again if entered wrongly 
+        }
+    }
 }
 
 // Basic Feature 7 : Display full flight details from an airline
@@ -402,14 +427,14 @@ void DisplayFullFlightDetails()
         Console.Write("Enter Airline Code: ");
         string airlineCode = Console.ReadLine()?.ToUpper().Trim();
 
-        if (string.IsNullOrWhiteSpace(airlineCode))
+        if (string.IsNullOrWhiteSpace(airlineCode) || !airlineDict.ContainsKey(airlineCode))
         {
             Console.WriteLine("Invalid Airline Code. Please try again.");
             return;
         }
 
         // Variable for the chosen airline
-        Airline selectedAirline = null;
+        Airline selectedAirline = airlineDict[airlineCode];
 
         // Find the chosen airline
         foreach (Airline airline in airlineDict.Values)
@@ -1106,21 +1131,7 @@ void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate
         }
         else if (option == "4")
         {
-            while (true)
-            {
-                NewFlight();
-
-                Console.Write("Would you like to add another flight? (Y/N) ");
-                string anotherFlight = Console.ReadLine().ToUpper();
-                if (anotherFlight == "N")
-                {
-                    break;
-                }
-                else if (anotherFlight != "Y")
-                {
-                    Console.WriteLine("Invalid option!");
-                }
-            }
+            NewFlight();
         }
         else if (option == "5")
         {
