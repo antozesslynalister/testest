@@ -980,86 +980,80 @@ void UnassignedFlights()
         Console.WriteLine("There are no boarding gates to process.");
         return;
     }
-    Queue<Flight> unassignedFlights = new Queue<Flight>();                        // making the unassigned flights Queue
-    List<BoardingGate> unassignedGates = new List<BoardingGate>();                 // making the unassigned gates List
-    // identify unassigned flights
+
+    Queue<Flight> unassignedFlights = new Queue<Flight>();  // Queue for unassigned flights
+    List<BoardingGate> unassignedGates = new List<BoardingGate>();  // List for unassigned gates
+
+    // Identify unassigned flights
     foreach (Flight flight in flightdict.Values)
     {
-        bool hasGate = false;                                                    // checking whether the flight has a gate assigned to it or not 
+        bool hasGate = false;
         foreach (BoardingGate gate in boardingGateDict.Values)
         {
-            if (gate.Flight == flight)                                           // if the gate has a flight assigned to it 
+            if (gate.Flight == flight)
             {
-                hasGate = true;                                                  // then it has a gate
+                hasGate = true;
                 break;
             }
         }
-        if (!hasGate)                                                            // if it does not have a gate
+        if (!hasGate)
         {
-            unassignedFlights.Enqueue(flight);                                   // add it to the unassigned flights Queue
+            unassignedFlights.Enqueue(flight);
         }
     }
-    Console.WriteLine($"Number of unassigned flights: {unassignedFlights.Count}");            // display the number of unassigned flights
+    Console.WriteLine($"Number of unassigned flights: {unassignedFlights.Count}");
 
+    // Identify unassigned gates
     foreach (BoardingGate gate in boardingGateDict.Values)
     {
-        if (gate.Flight == null)                                                //if the gate does not have a flight assigned to it 
+        if (gate.Flight == null)
         {
-            unassignedGates.Add(gate);                                          // add it to the unassigned gates List
+            unassignedGates.Add(gate);
         }
     }
-    Console.WriteLine($"Number of unassigned gates: {unassignedGates.Count}");     // display the number of unassigned gates
+    Console.WriteLine($"Number of unassigned gates: {unassignedGates.Count}");
 
-    double unassignedFlightCount = unassignedFlights.Count;                        // count the number of unassigned flights
-    double unassignedGateCount = unassignedGates.Count;                            // count of the number of unassigned gates
-    double assignedFlightCount = 0;                                               // set the number of assigned flights to 0
-    double assignedGateCount = 0;                                                 // set he number of assigned gates to 0
-    while (unassignedFlights.Count > 0 && unassignedGates.Count > 0)              // while the Queue and List still has flights and gates respectively
+    double assignedFlightCount = 0;
+    double assignedGateCount = 0;
+
+    while (unassignedFlights.Count > 0 && unassignedGates.Count > 0)
     {
-        Flight assignedFlight = unassignedFlights.Dequeue();                      // taking the first flight in the Queue
-        BoardingGate assignedGate = unassignedGates[0];                           // taking the flight gate in the List
-        bool assigned = false;
+        Flight assignedFlight = unassignedFlights.Dequeue();
+        BoardingGate assignedGate = null;
 
-        if (assignedFlight is CFFTFlight && assignedGate.SupportsCFFT)            // assigning the gate that supports CFFT to the flight that needs CFFT
+        foreach (BoardingGate gate in unassignedGates)
         {
-            assignedGate.Flight = assignedFlight;
-            assigned = true;
-        }
-        else if (assignedFlight is DDJBFlight)                                    // assigning the gate that supports DDJB to the flight that needs DDJB
-        {
-            if (assignedGate.SupportsDDJB && assignedGate.SupportsDDJB)
+            if (assignedFlight is CFFTFlight && gate.SupportsCFFT)
             {
-                assignedGate.Flight = assignedFlight;
-                assigned = true;
+                assignedGate = gate;
+            }
+            else if (assignedFlight is DDJBFlight && gate.SupportsDDJB)
+            {
+                assignedGate = gate;
+            }
+            else if (assignedFlight is LWTTFlight && gate.SupportsLWTT)
+            {
+                assignedGate = gate;
+            }
+            else if (assignedFlight is NORMFlight && !gate.SupportsCFFT && !gate.SupportsDDJB && !gate.SupportsLWTT)
+            {
+                assignedGate = gate;
             }
         }
-        else if (assignedFlight is LWTTFlight && assignedGate.SupportsLWTT)      // assigning the gate that supports LWTT to the flight that needs LWTT
+        if (assignedGate != null)
         {
             assignedGate.Flight = assignedFlight;
-            assigned = true;
-        }
-        else if (assignedFlight is NORMFlight && (!assignedGate.SupportsCFFT && !assignedGate.SupportsDDJB && !assignedGate.SupportsLWTT))  // assigning a gate that supports none of the special request codes to the flight that has no special request code
-        {
-            assignedGate.Flight = assignedFlight;
-            assigned = true;
-        }
-        if (assigned)                                                             // once it is assigned,
-        {
-            unassignedGates.Remove(assignedGate);                                 // remove the gate from the List
-            assignedFlightCount++;                                                // the number of flights assigned increases by 1
-            assignedGateCount++;                                                  // the number of gates assigned increases by 1
-        }
-        else                                                                      // if not assigned
-        {
-            unassignedFlights.Enqueue(assignedFlight);                            // add the flight back into the queue
+            unassignedGates.Remove(assignedGate);
+            assignedFlightCount++;
+            assignedGateCount++;
         }
     }
-    Console.WriteLine($"Number of flights processed: {assignedFlightCount}");     // display the number of assigned flights
-    Console.WriteLine($"Number of gates processed: {assignedGateCount}");         // display the number of assigned gates
-    double percentageFlights = (assignedFlightCount / flightdict.Count) * 100;     // calculate the percentage of the number of flights assigned over the total number of flights at first 
-    double percentageGates = (assignedGateCount / boardingGateDict.Count) * 100;   // calculate the percentage of the number of gates assigned over the total number of gates at first 
-    Console.WriteLine($"The percentage of flights processed: {percentageFlights}");  // display the flight percentage
-    Console.WriteLine($"The percentage of gates processed: {percentageGates}");      // display the gates percentage 
+    Console.WriteLine($"Number of flights processed and assigned: {assignedFlightCount}");
+    Console.WriteLine($"Number of gates processed and assigned: {assignedGateCount}");
+    double percentageFlights = (assignedFlightCount / flightdict.Count) * 100;
+    double percentageGates = (assignedGateCount / boardingGateDict.Count) * 100;
+    Console.WriteLine($"The percentage of flights processed and assigned: {percentageFlights:0.00}%");
+    Console.WriteLine($"The percentage of gates processed and assigned: {percentageGates:0.00}%");
 }
 
 
@@ -1174,11 +1168,11 @@ void CalculateTotalFeePerAirline()
                     Console.WriteLine("=============================================");
 
                     airlineSubtotal += flightFees;
-                    airlineDiscounts += flightDiscount;
+                    //airlineDiscounts += flightDiscount;
                 }
 
 
-                // airline-specific discounts based on promotional conditions
+                //airline- specific discounts based on promotional conditions
                 airlineDiscounts = ComputeDiscounts(airline);
 
                 totalFees += airlineSubtotal;
