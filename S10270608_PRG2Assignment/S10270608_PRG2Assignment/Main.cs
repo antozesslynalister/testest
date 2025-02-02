@@ -9,6 +9,7 @@ using S10270608_PRG2Assignment;
 using System.Net;
 using System.Runtime.InteropServices;
 
+// To create terminal 5 dictioanry: stores airlines and boarding gates at terminal 5 and the gate fees as a dictionary
 Terminal terminal5 = new Terminal("Terminal 5", new Dictionary<string, Airline>(), new Dictionary<string, BoardingGate>(), new Dictionary<string, double>());
 
 // Basic feature 1 : Load files (airlines and boarding gates) 
@@ -367,6 +368,10 @@ void NewFlight()
             if (flightdict.ContainsKey(flightNum))
             {
                 Console.WriteLine("Flight number already exists! Please enter a unique flight number.");
+            }
+            else if (string.IsNullOrWhiteSpace(flightNum))
+            {
+                Console.WriteLine("Invalid input. Please try again.");
             }
             else
             {
@@ -1400,7 +1405,7 @@ void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate
             break;
         }
         else
-        { Console.WriteLine("Invalid option! Choose an option from 0 - 7"); }
+        { Console.WriteLine("Invalid option! Choose an option from 0 - 9"); }
     }
 }
 Main(flightdict, boardingGateDict, airlineDict);
