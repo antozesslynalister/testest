@@ -222,7 +222,7 @@ void BoardingGateToFlight()
         while (true)                                                                   // makes sure they enter an acceptable flight number, if not try again
         {
             Console.Write("Enter Flight Number: ");
-            flightnum = Console.ReadLine();
+            flightnum = Console.ReadLine().ToUpper();
             if (!flightdict.ContainsKey(flightnum))
             {
                 Console.WriteLine("Flight number does not exist! Please try again.");
@@ -847,6 +847,7 @@ void ModifySpecialRequestCode(Flight selectedFlight)
 {
     try
     {
+        //Flight newFlight = selectedFlight; // new obj based on input
         while (true) // data input validation loop
         {
             Console.Write("Enter new Special Request Code: ");
@@ -855,7 +856,7 @@ void ModifySpecialRequestCode(Flight selectedFlight)
             // checks if input is not empty or whitespace and if it matches valid special request code 
             if (!(string.IsNullOrWhiteSpace(requestCode)) && (requestCode == "CFFT" || requestCode == "DDJB" || requestCode == "LWTT" || requestCode == "NONE"))
             { // valid input = updates the special request code
-                selectedFlight.SpecialRequestCode = requestCode;
+                selectedFlight.SpecialRequestCode = requestCode; // assign the input to this obj
                 Console.WriteLine("Special Request Code updated successfully!");
                 break; // loop is exited
             }
@@ -884,7 +885,9 @@ void ModifyBoardingGate(Flight selectedFlight)
             // checks if input is not empty or whitespace and if it matches valid gate 
             if (!(string.IsNullOrWhiteSpace(gate)) && boardingGateDict.ContainsKey(gate))
             { // valid input = updates gate
-                selectedFlight.boardingGate = new BoardingGate(gate, false, false, false);
+                BoardingGate newGate = boardingGateDict[gate];
+                selectedFlight.boardingGate = newGate;
+                newGate.Flight = selectedFlight;
                 Console.WriteLine("Boarding Gate updated successfully!");
                 break; // loop is exited
             }
@@ -944,14 +947,16 @@ void DisplayFlightDetails(Flight flight, Airline selectedAirline)
         Console.WriteLine($"Destination: {flight.Destination}");
         Console.WriteLine($"Expected Departure/Arrival Time: {flight.ExpectedTime:dd/MM/yyyy hh:mm tt}");
         Console.WriteLine($"Status: {flight.Status}");
-        if (flight is CFFTFlight)
+
+        if (flight.SpecialRequestCode == "CFFT")
             Console.WriteLine("Special Request Code: CFFT");
-        else if (flight is DDJBFlight)
+        else if (flight.SpecialRequestCode == "DDJB")
             Console.WriteLine("Special Request Code: DDJB");
-        else if (flight is LWTTFlight)
+        else if (flight.SpecialRequestCode == "LWTT")
             Console.WriteLine("Special Request Code: LWTT");
-        else if (flight is NORMFlight)
+        else if (flight.SpecialRequestCode == "NONE")
             Console.WriteLine("Special Request Code: None");
+
         bool hasGate = false; // check if flight has boarding gate assigned
         // iterate through all bgs in dict
         foreach (BoardingGate gate in boardingGateDict.Values)

@@ -17,7 +17,11 @@ namespace S10270608_PRG2Assignment
     class NORMFlight : Flight
     {
         public NORMFlight() { }
-        public NORMFlight(string fn, string o, string d, DateTime et) : base(fn, o, d, et) { }
+
+        public string SpecialRequestCode { get; set; }
+        public NORMFlight(string fn, string o, string d, DateTime et) : base(fn, o, d, et) {
+            SpecialRequestCode = "NONE";
+        }
         public override double CalculateFees()
         {
             double Base = 300;

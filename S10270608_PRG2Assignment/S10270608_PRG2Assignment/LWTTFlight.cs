@@ -21,10 +21,13 @@ namespace S10270608_PRG2Assignment
             get { return requestFee; }
             set { requestFee = value; }
         }
+
+        public string SpecialRequestCode { get; set; }
         public LWTTFlight() { }
         public LWTTFlight(string fn, string o, string d, DateTime et) : base(fn, o, d, et)
         {
             RequestFee = 500;
+            SpecialRequestCode = "LWTTF";
         }
         public override double CalculateFees()
         {

@@ -1,7 +1,7 @@
 ﻿//==========================================================
 // Student Number : S10267773
-// Student Name	  : Joely Lim Kei Cin 
-// Partner Name	  : Antozesslyn Alister
+// Student Name    : Joely Lim Kei Cin 
+// Partner Name    : Antozesslyn Alister
 //==========================================================
 
 
@@ -49,7 +49,7 @@ namespace S10270608_PRG2Assignment
 
         //for features 7 and 8
         public string SpecialRequestCode { get; set; }
-        public BoardingGate boardingGate { get; set; } // may ne unnesscary
+        public BoardingGate boardingGate { get; set; } // may be unnesscary
 
         public Flight() { }
         public Flight(string fn, string o, string d, DateTime et)
