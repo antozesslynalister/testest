@@ -523,7 +523,14 @@ void DisplayFullFlightDetails()
             Console.WriteLine($"Origin: {selectedFlight.Origin}");
             Console.WriteLine($"Destination: {selectedFlight.Destination}");
             Console.WriteLine($"Expected Departure/Arrival Time: {selectedFlight.ExpectedTime}");
-            Console.WriteLine($"Special Request Code: {selectedFlight.Status ?? "None"}");
+            if (selectedFlight is CFFTFlight)
+                Console.WriteLine("Special Request Code: CFFT");
+            else if (selectedFlight is DDJBFlight)
+                Console.WriteLine("Special Request Code: DDJB");
+            else if (selectedFlight is LWTTFlight)
+                Console.WriteLine("Special Request Code: LWTT");
+            else if (selectedFlight is NORMFlight)
+                Console.WriteLine("Special Request Code: None");
             Console.WriteLine($"Boarding Gate: {selectedFlight.boardingGate?.GateName ?? "Unassigned"}");
         }
         else
@@ -657,22 +664,22 @@ void ModifyFlight(Airline selectedAirline, Flight selectedFlight)
             if (modifyChoice == "1")
             {
                 ModifyBasicInformation(selectedFlight);
-                break;
+                //break;
             }
             else if (modifyChoice == "2")
             {
                 ModifyStatus(selectedFlight);
-                break;
+                //break;
             }
             else if (modifyChoice == "3")
             {
                 ModifySpecialRequestCode(selectedFlight);
-                break;
+                //break;
             }
             else if (modifyChoice == "4")
             {
                 ModifyBoardingGate(selectedFlight);
-                break;
+                //break;
             }
             else
             {
@@ -680,7 +687,7 @@ void ModifyFlight(Airline selectedAirline, Flight selectedFlight)
             }
         }
 
-        Console.WriteLine("Flight updated!");
+        //Console.WriteLine("Flight updated!");
         DisplayFlightDetails(selectedFlight, selectedAirline);
     }
     catch (Exception ex)
@@ -849,7 +856,14 @@ void DisplayFlightDetails(Flight flight, Airline selectedAirline)
         Console.WriteLine($"Destination: {flight.Destination}");
         Console.WriteLine($"Expected Departure/Arrival Time: {flight.ExpectedTime:dd/MM/yyyy hh:mm tt}");
         Console.WriteLine($"Status: {flight.Status}");
-        Console.WriteLine($"Special Request Code: {flight.SpecialRequestCode ?? "None"}");
+        if (flight is CFFTFlight)
+            Console.WriteLine("Special Request Code: CFFT");
+        else if (flight is DDJBFlight)
+            Console.WriteLine("Special Request Code: DDJB");
+        else if (flight is LWTTFlight)
+            Console.WriteLine("Special Request Code: LWTT");
+        else if (flight is NORMFlight)
+            Console.WriteLine("Special Request Code: None"); 
         Console.WriteLine($"Boarding Gate: {flight.boardingGate?.GateName ?? "Unassigned"}");
     }
     catch (Exception ex)
@@ -870,6 +884,21 @@ void SortedFlights()
     {
         string gate = "";
         string flightname = "Unknown airline";                               // by default, the airline does not exist
+
+        //if (airlineDict.ContainsKey(flight.FlightNumber))                    // checking if the airline exists
+        //{                                                                    // if it does, the flight name will change
+        //    flightname = airlineDict[flight.FlightNumber].Name;              // to retrieve the flight name and display it later
+        //}
+        //checking which airline your flight belongs to
+        //this requires you to iterate through the dictionary of airlines
+        //and check if the flight number is in the dictionary of flights for that airline
+        //if it is, then you can get the airline name
+        //foreach (string k in airlineDict.Keys)
+        //{
+        //    if (airlineDict[k].Flights.ContainsKey(flight.FlightNumber))
+        //        flightname = airlineDict[k].Name;
+        //}
+
         foreach (Airline airline in airlineDict.Values)
         {
             if (airline.Flights.ContainsKey(flight.FlightNumber))                    // checking if the airline exists
@@ -880,6 +909,7 @@ void SortedFlights()
 
         foreach (BoardingGate gates in boardingGateDict.Values)
         {
+
             if (gates.Flight == flight)                                     // if the gate has been assigned 
             {
                 gate = gates.GateName;                                      // retrieve the gate name for displaying later 
@@ -890,9 +920,10 @@ void SortedFlights()
                 gate = "Unassigned";
             }
         }
-        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", (flight.FlightNumber), (flightname), (flight.Origin), (flight.Destination), (flight.ExpectedTime), (flight.Status), (gate)); // display the details 
+        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", (flight.FlightNumber), (flightname), (flight.Origin), (flight.Destination), (flight.ExpectedTime), (flight.Status ?? "Scheduled"), (gate)); // display the details 
     }
 }
+
 
 // Advanced feature (a) : process all unassigned flights to boarding gates in bulk
 void UnassignedFlights()
@@ -909,6 +940,7 @@ void UnassignedFlights()
     }
     Queue<Flight> unassignedFlights = new Queue<Flight>();                        // making the unassigned flights Queue
     List<BoardingGate> unassignedGates = new List<BoardingGate>();                 // making the unassigned gates List
+    // identify unassigned flights
     foreach (Flight flight in flightdict.Values)
     {
         bool hasGate = false;                                                    // checking whether the flight has a gate assigned to it or not 
@@ -935,6 +967,7 @@ void UnassignedFlights()
         }
     }
     Console.WriteLine($"Number of unassigned gates: {unassignedGates.Count}");     // display the number of unassigned gates
+
     double unassignedFlightCount = unassignedFlights.Count;                        // count the number of unassigned flights
     double unassignedGateCount = unassignedGates.Count;                            // count of the number of unassigned gates
     double assignedFlightCount = 0;                                               // set the number of assigned flights to 0
@@ -987,6 +1020,7 @@ void UnassignedFlights()
     Console.WriteLine($"The percentage of gates processed: {percentageGates}");      // display the gates percentage 
 }
 
+
 // Advanced Feature (b) : Display the total fee per airline for the day
 // Method to calculate and display total fee per airline for the day
 
@@ -1019,6 +1053,7 @@ void CalculateTotalFeePerAirline()
                     Console.WriteLine("Please ensure all flights have boarding gates assigned.");
                     return;
                 }
+
             }
         }
 
@@ -1170,15 +1205,15 @@ void DisplayMenu()
     Console.WriteLine("\n=============================================");
     Console.WriteLine("Welcome to Changi Airport Terminal 5");
     Console.WriteLine("=============================================");
-    Console.WriteLine("1. List All Flights");  // feature 3
-    Console.WriteLine("2. List Boarding Gates");  // feature 4
-    Console.WriteLine("3. Assign a Boarding Gate to a Flight");    // feature 5
-    Console.WriteLine("4. Create Flight");     //feature 6
-    Console.WriteLine("5. Display Airline Flights");        // feature 7
-    Console.WriteLine("6. Modify Flight Details");       //feature 8
-    Console.WriteLine("7. Display Flight Schedule");      // feature 9
-    Console.WriteLine("8. Assign Flights to an Available Boarding Gate");
-    Console.WriteLine("9. Calculate the Total Amount of Airline Fees to be Charged");
+    Console.WriteLine("1. List All Flights");                                                   // feature 3
+    Console.WriteLine("2. List Boarding Gates");                                               // feature 4
+    Console.WriteLine("3. Assign a Boarding Gate to a Flight");                               // feature 5
+    Console.WriteLine("4. Create Flight");                                                   // feature 6
+    Console.WriteLine("5. Display Airline Flights");                                        // feature 7
+    Console.WriteLine("6. Modify Flight Details");                                         // feature 8
+    Console.WriteLine("7. Display Flight Schedule");                                      // feature 9
+    Console.WriteLine("8. Assign Flights to an Available Boarding Gate");                // advanced feature (a)
+    Console.WriteLine("9. Calculate the Total Amount of Airline Fees to be Charged");   // advanced feature (b)
     Console.WriteLine("0. Exit");
 }
 void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate> boardingGateList, Dictionary<string, Airline> airlineList)

@@ -49,7 +49,7 @@ namespace S10270608_PRG2Assignment
 
         //for features 7 and 8
         public string SpecialRequestCode { get; set; }
-        public BoardingGate boardingGate { get; set; }
+        public BoardingGate boardingGate { get; set; } // may ne unnesscary
 
         public Flight() { }
         public Flight(string fn, string o, string d, DateTime et)
@@ -62,6 +62,7 @@ namespace S10270608_PRG2Assignment
             //for features 7 and 8
             SpecialRequestCode = "";
             boardingGate = null;
+            Status = "Scheduled"; 
         }
         public abstract double CalculateFees();
         public override string ToString()

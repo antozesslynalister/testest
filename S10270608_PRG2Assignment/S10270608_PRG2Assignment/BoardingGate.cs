@@ -22,11 +22,11 @@ namespace S10270608_PRG2Assignment
 
 
         public BoardingGate() { }
-        public BoardingGate(string gateName, bool cfft, bool ddjb, bool lwtt)
+        public BoardingGate(string gateName, bool ddjb, bool cfft, bool lwtt)
         {
             GateName = gateName;
-            SupportsCFFT = cfft;
             SupportsDDJB = ddjb;
+            SupportsCFFT = cfft;
             SupportsLWTT = lwtt;
         }
         public double CalculateFees()
