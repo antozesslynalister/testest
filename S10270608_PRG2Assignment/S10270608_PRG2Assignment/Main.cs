@@ -1232,7 +1232,24 @@ void CalculateTotalFeePerAirline()
                     Console.WriteLine($"Origin : {flight.Origin}");
                     Console.WriteLine($"Destination : {flight.Destination}");
                     Console.WriteLine($"Expected Time : {flight.ExpectedTime}");
-                    Console.WriteLine($"Special Request Code : {flight.SpecialRequestCode}");
+
+                    if (flight is CFFTFlight)
+                    {
+                        Console.WriteLine("Special Request Code: CFFT");
+                    }
+                    else if (flight is DDJBFlight)
+                    {
+                        Console.WriteLine("Special Request Code: DDJB");
+                    }
+                    else if (flight is LWTTFlight)
+                    {
+                        Console.WriteLine("Special Request Code: LWTT");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Special Request Code: None");
+                    }
+
                     Console.WriteLine($"Initial Amount : ${flightFees}");
                     Console.WriteLine($"Total Discount : -${flightDiscount}");
                     Console.WriteLine($"Final Amount : ${flightFees - flightDiscount}");
