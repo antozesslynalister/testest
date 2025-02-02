@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\yloej\\.nuget\\packages\\": {}
+    "C:\\Users\\antozesslyn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj",
       "projectName": "S10270608_PRG2Assignment",
-      "projectPath": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj",
-      "packagesPath": "C:\\Users\\yloej\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yloej\\OneDrive - Ngee Ann Polytechnic\\Documents\\GitHub\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\obj\\",
+      "projectPath": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment.csproj",
+      "packagesPath": "C:\\Users\\antozesslyn\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\antozesslyn\\OneDrive - Ngee Ann Polytechnic\\Documents\\DATA SCIENCE\\! oct 24\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\S10270608_PRG2Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\yloej\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\antozesslyn\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

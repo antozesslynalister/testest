@@ -1115,216 +1115,220 @@ void UnassignedFlights()
     }
 }
 
-//// Advanced Feature (b) : Display the total fee per airline for the day
-//// Method to calculate and display total fee per airline for the day
+// Advanced Feature (b) : Display the total fee per airline for the day
+// Method to calculate and display total fee per airline for the day
+void CalculateTotalFeePerAirline()
+{
+    try
+    {
+        Console.WriteLine("\n=============================================");
+        Console.WriteLine("Total Fees Per Airline for the Day");
+        Console.WriteLine("=============================================");
 
-//void CalculateTotalFeePerAirline()
-//{
-//    try
-//    {
-//        Console.WriteLine("\n=============================================");
-//        Console.WriteLine("Total Fees Per Airline for the Day");
-//        Console.WriteLine("=============================================");
+        decimal totalFees = 0; // track fees for all airlines 
+        decimal totalDiscounts = 0; // track total discounts for all airlines
 
-//        decimal totalFees = 0;
-//        decimal totalDiscounts = 0;
+        // check if airline data is available
+        if (airlineDict == null || airlineDict.Count == 0)
+        {
+            Console.WriteLine("Error: No airline data available.");
+            return;
+        }
 
-//        if (airlineDict == null || airlineDict.Count == 0)
-//        {
-//            Console.WriteLine("Error: No airline data available.");
-//            return;
-//        }
+        // create a list to store unassigned flights & test if each flight is assigned to a gate
+        List<Flight> unassignedFlights = new List<Flight>();
+        foreach (Flight flight in flightdict.Values)
+        {
+            bool hasGate = false; // checking whether the flight has a gate assigned to it or not 
+            // iterate through boarding gates to check if the flight has a gate assigned
+            foreach (BoardingGate gate in boardingGateDict.Values)
+            {
+                if (gate.Flight == flight) // if the gate has a flight assigned to it 
+                {
+                    hasGate = true;
+                    break; // loop is exited when there is flight assigned
+                }
+            }
+            if (!hasGate) // if it does not have a gate
+            {
+                unassignedFlights.Add(flight); // add it to the unassigned flights Queue
+            }
+        }
 
-//        // create a list to store unassigned flights & test if each flight is assigned to a gate
-//        List<Flight> unassignedFlights = new List<Flight>();
-//        foreach (Flight flight in flightdict.Values)
-//        {
-//            bool hasGate = false; // checking whether the flight has a gate assigned to it or not 
-//            foreach (BoardingGate gate in boardingGateDict.Values)
-//            {
-//                if (gate.Flight == flight) // if the gate has a flight assigned to it 
-//                {
-//                    hasGate = true; // 
-//                    break;
-//                }
-//            }
-//            if (!hasGate) // if it does not have a gate
-//            {
-//                unassignedFlights.Add(flight); // add it to the unassigned flights Queue
-//            }
-//        }
+        //if list is not empty, not all flights have been assigned boarding gates
+        if (unassignedFlights.Count != 0)
+        {
+            Console.WriteLine("Error: Not all flights have assigned boarding gates.");
+            Console.WriteLine("Please ensure all flights have boarding gates assigned.");
+            return;
+        }
 
-//        //if list is not empty, not all flights have been assigned boarding gates
-//        if (unassignedFlights.Count != 0)
-//        {
-//            Console.WriteLine("Error: Not all flights have assigned boarding gates.");
-//            Console.WriteLine("Please ensure all flights have boarding gates assigned.");
-//            return;
-//        }
+        // iterate over airlines in the airline dict 
+        foreach (var airline in airlineDict.Values)
+        {
+            decimal airlineTotal = 0; // variable to track subtotal fees for each airline
+            decimal airlineDiscounts = 0; // variable to track discounts for each airline
 
-//        foreach (var airline in airlineDict.Values)
-//        {
-//            decimal airlineSubtotal = 0;
-//            decimal airlineDiscounts = 0;
+            Console.WriteLine("\n=============================================");
+            Console.WriteLine($"{airline.Name}'s Total Amount");
+            Console.WriteLine("=============================================");
 
-//            Console.WriteLine("\n=============================================");
-//            Console.WriteLine($"{airline.Name}'s Fees");
-//            Console.WriteLine("=============================================");
+            try
+            {
+                // get all flights for the airline
+                foreach (var flight in airline.Flights.Values)
+                {
+                    decimal flightFees = 0; // variable to track fees for each flight
 
-//            try
-//            {
-//                // Retrieve all flights for the airline
-//                foreach (var flight in airline.Flights.Values)
-//                {
-//                    decimal flightFees = 0;
+                    // check if the origin or destination is sg
+                    if (flight.Origin == "SIN")
+                    {
+                        flightFees += 800; // departing flight fee
+                    }
+                    if (flight.Destination == "SIN")
+                    {
+                        flightFees += 500; // arriving flight fee
+                    }
 
-//                    // Check if the origin or destination is Singapore (SIN)
-//                    if (flight.Origin == "SIN")
-//                    {
-//                        flightFees += 800; // Departing flight fee
-//                    }
-//                    if (flight.Destination == "SIN")
-//                    {
-//                        flightFees += 500; // Arriving flight fee
-//                    }
+                    // check if flight has a special request code and apply its respective fees
+                    if (!string.IsNullOrEmpty(flight.SpecialRequestCode))
+                    {
+                        if (flight.SpecialRequestCode == "DDJB")
+                        {
+                            flightFees += 300;
+                        }
+                        else if (flight.SpecialRequestCode == "CFFT")
+                        {
+                            flightFees += 150;
+                        }
+                        else if (flight.SpecialRequestCode == "LWTT")
+                        {
+                            flightFees += 500;
+                        }
+                    }
 
-//                    if (!string.IsNullOrEmpty(flight.SpecialRequestCode))
-//                    {
-//                        if (flight.SpecialRequestCode == "DDJB")
-//                        {
-//                            flightFees += 300;
-//                        }
-//                        else if (flight.SpecialRequestCode == "CFFT")
-//                        {
-//                            flightFees += 150;
-//                        }
-//                        else if (flight.SpecialRequestCode == "LWTT")
-//                        {
-//                            flightFees += 500;
-//                        }
-//                    }
+                    // boarding gate base fee
+                    flightFees += 300;
 
-//                    // Apply Boarding Gate Base Fee
-//                    flightFees += 300;
+                    // discounts for fl
+                    decimal flightDiscount = ComputeDiscountsForFlights(flight);
 
-//                    decimal flightDiscount = ComputeDiscounts(flight);
+                    // add flight fees to the airline's subtotal
+                    airlineTotal += flightFees;
 
+                    Console.WriteLine("\n=============================================");
+                    Console.WriteLine($"Flight : {flight.FlightNumber}");
+                    Console.WriteLine($"Airline: {airline.Name}");
+                    Console.WriteLine($"Origin : {flight.Origin}");
+                    Console.WriteLine($"Destination : {flight.Destination}");
+                    Console.WriteLine($"Expected Time : {flight.ExpectedTime}");
+                    Console.WriteLine($"Special Request Code : {flight.SpecialRequestCode}");
+                    Console.WriteLine($"Initial Amount : ${flightFees}");
+                    Console.WriteLine($"Total Discount : -${flightDiscount}");
+                    Console.WriteLine($"Final Amount : ${flightFees - flightDiscount}");
+                    Console.WriteLine("=============================================");
 
-//                    // Add the flight fees to the airline's subtotal
-//                    airlineSubtotal += flightFees;
-
-//                    Console.WriteLine("\n=============================================");
-//                    Console.WriteLine($"Flight : {flight.FlightNumber}");
-//                    Console.WriteLine($"Airline: {airline.Name}");
-//                    Console.WriteLine($"Origin: {flight.Origin}");
-//                    Console.WriteLine($"Destination: {flight.Destination}");
-//                    Console.WriteLine($"Expected Time: {flight.ExpectedTime}");
-//                    Console.WriteLine($"Special Request Code: {flight.SpecialRequestCode}");
-//                    Console.WriteLine($"Initial Amount: ${flightFees}");
-//                    Console.WriteLine($"Total Discount: ${flightDiscount}");
-//                    Console.WriteLine($"Final Amount: ${flightFees - flightDiscount}");
-//                    Console.WriteLine("=============================================");
-
-//                    airlineSubtotal += flightFees;
-//                    //airlineDiscounts += flightDiscount;
-//                }
+                    // add fees to airline total 
+                    airlineTotal += flightFees;
+                }
 
 
-//                //airline- specific discounts based on promotional conditions
-//                airlineDiscounts = ComputeDiscounts(airline);
+                // airline specific discounts based on promotional conditions
+                airlineDiscounts = ComputeDiscountsForAirline(airline, airlineTotal);
 
-//                totalFees += airlineSubtotal;
-//                totalDiscounts += airlineDiscounts;
+                // add the airlines's subtotal and discounts to the overall totals
+                totalFees += airlineTotal;
+                totalDiscounts += airlineDiscounts;
 
-//                Console.WriteLine($"{airline.Name}: Subtotal: ${airlineSubtotal}, Discounts: -${airlineDiscounts}, Final Total: ${airlineSubtotal - airlineDiscounts}");
+                Console.WriteLine($"{airline.Name}: Subtotal: ${airlineTotal}, Discounts: -${airlineDiscounts}, Final Total: ${airlineTotal - airlineDiscounts}");
 
-//            }
-//            catch (Exception ex)
-//            {
-//                Console.WriteLine($"Error processing fees for airline {airline.Name}: {ex.Message}");
-//            }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing fees for airline {airline.Name}: {ex.Message}");
+            }
 
-//        }
+        }
 
-//        // Display the overall total fees and discounts
-//        Console.WriteLine("=============================================");
-//        Console.WriteLine($"Total Airline Fees: ${totalFees}");
-//        Console.WriteLine($"Total Airline Discounts: -${totalDiscounts}");
-//        Console.WriteLine($"Final Total Fees Collected: ${totalFees - totalDiscounts}");
-//        Console.WriteLine($"Discount Percentage: {((totalFees > 0) ? (totalDiscounts / totalFees) * 100 : 0):F2}%");
-//    }
-//    catch (Exception ex)
-//    {
-//        Console.WriteLine($"An unexpected error occurred: {ex.Message}");
-//    }
-//}
+        // display overall total fees and discounts
+        Console.WriteLine("=============================================");
+        Console.WriteLine($"Total Airline Fees : ${totalFees}");
+        Console.WriteLine($"Total Airline Discounts : -${totalDiscounts}");
+        Console.WriteLine($"Final Total Amount : ${totalFees - totalDiscounts}");
+        Console.WriteLine($"Discount Percentage : {((totalFees > 0) ? (totalDiscounts / totalFees) * 100 : 0):F2}%");
+        // checks of total fees is greater than 0, calculates the discount % and formats in 2dp
+        // if total fees is 0, discount% is 0
+        Console.WriteLine("=============================================");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+    }
+}
 
-//// helper method to compute discounts for an airline
-//decimal ComputeDiscountsForAirline(Airline airline)
-//{
+// helper method to compute discounts for an airline
+decimal ComputeDiscountsForAirline(Airline airline, decimal airlineTotal)
+{
+    decimal totalDiscounts = 0; // variable to track total discount for airline
+    int flightCount = airline.Flights.Count; // get the number of flights for airline
 
-//    decimal totalDiscounts = 0;
-//    int flightCount = airline.Flights.Count;
+    // for every 3 flights, a $350 discount
+    totalDiscounts += (flightCount / 3) * 350;
 
-//    foreach (var flight in airline.Flights.Values)
-//    {
-//        // Check if the flight qualifies for a time-based discount
-//        if (flight.ExpectedTime.Hour < 11 || flight.ExpectedTime.Hour > 21)
-//        {
-//            totalDiscounts += 110;
-//        }
+    if (flightCount > 5)
+    {
+        totalDiscounts += airlineTotal * 0.03m;
+    }
 
-//        // Check if the flight's origin qualifies for a discount
-//        if (flight.Origin == "DXB" || flight.Origin == "BKK" || flight.Origin == "NRT")
-//        {
-//            totalDiscounts += 25;
-//        }
+    return totalDiscounts;
+}
 
-//        // Check if the flight has no special request codes
-//        if (string.IsNullOrEmpty(flight.SpecialRequestCode))
-//        {
-//            totalDiscounts += 50;
-//        }
 
-//        qualifyingFlights++;
-//    }
+// helper method to compute discounts for flight
+decimal ComputeDiscountsForFlights(Flight flight)
+{
+    decimal discount = 0; // variable to track the discount for flight
 
-//    // Apply batch discount (for every 3 flights, a $350 discount)
-//    totalDiscounts += (flightCount / 3) * 350;
+    // check if the flight qualifies for a time-based discount
+    if (flight.ExpectedTime.Hour < 11 || flight.ExpectedTime.Hour > 21)
+    {
+        discount += 110;
+    }
 
-//    // Apply additional discount for airlines with more than 5 flights
-//    if (flightCount > 5)
-//    {
-//        decimal totalBillBeforeDiscounts = 0;
-//        foreach (var flight in airline.Flights.Values)
-//        {
-//            totalBillBeforeDiscounts += (flight.Origin == "SIN" ? 800 : 0) +
-//                                        (flight.Destination == "SIN" ? 500 : 0) +
-//                                        300;
-//            if (!string.IsNullOrEmpty(flight.SpecialRequestCode))
-//            {
-//                if (flight.SpecialRequestCode == "DDJB")
-//                {
-//                    totalBillBeforeDiscounts += 300;
-//                }
-//                else if (flight.SpecialRequestCode == "CFFT")
-//                {
-//                    totalBillBeforeDiscounts += 150;
-//                }
-//                else if (flight.SpecialRequestCode == "LWTT")
-//                {
-//                    totalBillBeforeDiscounts += 500;
-//                }
-//            }
-//        }
-//        totalDiscounts += totalBillBeforeDiscounts * 0.03m;
-//    }
+    // check if the flight's origin qualifies for a discount
+    if (flight.Origin == "DXB" || flight.Origin == "BKK" || flight.Origin == "NRT")
+    {
+        discount += 25;
+    }
 
-//    return totalDiscounts;
-//}
+    // apply special request code discounts
+    if (!string.IsNullOrEmpty(flight.SpecialRequestCode))
+    {
+        if (flight.SpecialRequestCode == "DDJB")
+        {
+            discount += 300;
+        }
+        else if (flight.SpecialRequestCode == "CFFT")
+        {
+            discount += 150;
+        }
+        else if (flight.SpecialRequestCode == "LWTT")
+        {
+            discount += 500;
+        }
+    }
+    else
+    {
+        // add $50 discount if there is no special request code
+        discount += 50;
+    }
+
+    return discount;
+}
+
+
 
 // Main Program : display menu and runs the entire program
-
 void DisplayMenu()
 {
     Console.WriteLine("\n=============================================");
@@ -1388,7 +1392,7 @@ void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate
         }
         else if (option == "9")
         {
-            //CalculateTotalFeePerAirline();
+            CalculateTotalFeePerAirline();
         }
         else if (option == "0")
         {
