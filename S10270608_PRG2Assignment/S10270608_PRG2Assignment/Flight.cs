@@ -58,11 +58,11 @@ namespace S10270608_PRG2Assignment
             Origin = o;
             Destination = d;
             ExpectedTime = et;
+            Status = "Scheduled";
 
             //for features 7 and 8
             SpecialRequestCode = "";
             boardingGate = null;
-            Status = "Scheduled"; 
         }
         public abstract double CalculateFees();
         public override string ToString()

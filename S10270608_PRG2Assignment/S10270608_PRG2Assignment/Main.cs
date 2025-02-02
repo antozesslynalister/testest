@@ -664,22 +664,22 @@ void ModifyFlight(Airline selectedAirline, Flight selectedFlight)
             if (modifyChoice == "1")
             {
                 ModifyBasicInformation(selectedFlight);
-                //break;
+                break;
             }
             else if (modifyChoice == "2")
             {
                 ModifyStatus(selectedFlight);
-                //break;
+               break;
             }
             else if (modifyChoice == "3")
             {
                 ModifySpecialRequestCode(selectedFlight);
-                //break;
+                break;
             }
             else if (modifyChoice == "4")
             {
                 ModifyBoardingGate(selectedFlight);
-                //break;
+                break;
             }
             else
             {
@@ -687,7 +687,7 @@ void ModifyFlight(Airline selectedAirline, Flight selectedFlight)
             }
         }
 
-        //Console.WriteLine("Flight updated!");
+        Console.WriteLine("Flight updated!");
         DisplayFlightDetails(selectedFlight, selectedAirline);
     }
     catch (Exception ex)
@@ -850,7 +850,7 @@ void DisplayFlightDetails(Flight flight, Airline selectedAirline)
 {
     try
     {
-        Console.WriteLine($"\nFlight Number: {flight.FlightNumber}");
+        Console.WriteLine($"Flight Number: {flight.FlightNumber}");
         Console.WriteLine($"Airline Name: {selectedAirline.Name}");
         Console.WriteLine($"Origin: {flight.Origin}");
         Console.WriteLine($"Destination: {flight.Destination}");
@@ -879,31 +879,18 @@ void SortedFlights()
 
     flightlist.Sort();                                                         // sorting the flight list by the scheduled time
 
-    Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", "Flight Number", "Airline Name", "Origin", "Destination", "Expected Departure/Arrival Time", "Status", "Boarding Gate");  // display flight headers
     foreach (Flight flight in flightlist)
     {
-        string gate = "";
-        string flightname = "Unknown airline";                               // by default, the airline does not exist
-
-        //if (airlineDict.ContainsKey(flight.FlightNumber))                    // checking if the airline exists
-        //{                                                                    // if it does, the flight name will change
-        //    flightname = airlineDict[flight.FlightNumber].Name;              // to retrieve the flight name and display it later
-        //}
-        //checking which airline your flight belongs to
-        //this requires you to iterate through the dictionary of airlines
-        //and check if the flight number is in the dictionary of flights for that airline
-        //if it is, then you can get the airline name
-        //foreach (string k in airlineDict.Keys)
-        //{
-        //    if (airlineDict[k].Flights.ContainsKey(flight.FlightNumber))
-        //        flightname = airlineDict[k].Name;
-        //}
+        //string status;
+        string gate = "Unassigned";
+        string flightname = "Unknown airline";
 
         foreach (Airline airline in airlineDict.Values)
         {
             if (airline.Flights.ContainsKey(flight.FlightNumber))                    // checking if the airline exists
             {                                                                    // if it does, the flight name will change
                 flightname = airline.Name;                                   // to retrieve the flight name and display it later
+                break;
             }
         }
 
@@ -915,12 +902,17 @@ void SortedFlights()
                 gate = gates.GateName;                                      // retrieve the gate name for displaying later 
                 break;
             }
-            else                                                           // if the gate has not been assigned
-            {
-                gate = "Unassigned";
-            }
         }
-        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -18}{6, -18}", (flight.FlightNumber), (flightname), (flight.Origin), (flight.Destination), (flight.ExpectedTime), (flight.Status ?? "Scheduled"), (gate)); // display the details 
+        Console.WriteLine(flight.Status);
+        //if (flight.Status == null)
+        //{
+        //    status = "Scheduled";
+        //}
+        //else
+        //{
+        //    status = flight.Status;
+        //}
+        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -15}{6, -15}", (flight.FlightNumber), (flightname), (flight.Origin), (flight.Destination), (flight.ExpectedTime), (flight.Status), (gate)); // display the details if flight has status 
     }
 }
 
@@ -1029,7 +1021,7 @@ void CalculateTotalFeePerAirline()
     try
     {
 
-        Console.WriteLine("\n=============================================");
+        Console.WriteLine("=============================================");
         Console.WriteLine("Total Fees Per Airline for the Day");
         Console.WriteLine("=============================================");
 
@@ -1202,7 +1194,7 @@ decimal ComputeDiscounts(Airline airline)
 
 void DisplayMenu()
 {
-    Console.WriteLine("\n=============================================");
+    Console.WriteLine("=============================================");
     Console.WriteLine("Welcome to Changi Airport Terminal 5");
     Console.WriteLine("=============================================");
     Console.WriteLine("1. List All Flights");                                                   // feature 3
