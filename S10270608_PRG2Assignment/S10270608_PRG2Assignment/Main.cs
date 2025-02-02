@@ -350,6 +350,26 @@ void BoardingGateToFlight()
 }
 
 // Basic Feature 6 : Create a new flight
+void CreateFlightAgain()
+{
+    while (true)                                                            // data validation for invalid input
+    {
+        Console.Write("Would you like to add another flight? (Y/N) ");
+        string anotherFlight = Console.ReadLine().ToUpper();
+        if (anotherFlight == "N")
+        {
+            break;                                                      // break out of the method
+        }
+        else if (anotherFlight == "Y")
+        {
+            NewFlight();                                              // rerun the method again
+        }
+        else
+        {
+            Console.WriteLine("Invalid option. Please try again.");               // allows user to input again if entered wrongly 
+        }
+    }
+}
 void NewFlight()
 {
     try
@@ -364,7 +384,7 @@ void NewFlight()
         while (true)                                                                             // data validation for invalid input 
         {
             Console.Write("Enter Flight Number: ");
-            flightNum = Console.ReadLine();
+            flightNum = Console.ReadLine().ToUpper();
             if (flightdict.ContainsKey(flightNum))
             {
                 Console.WriteLine("Flight number already exists! Please enter a unique flight number.");
@@ -468,25 +488,6 @@ void NewFlight()
             {
                 string addFlight = flightNum + "," + flightOrigin + "," + flightDestination + "," + flightTime + "," + code;
                 sw.WriteLine(addFlight);
-            }
-        }
-
-        //Adding a new flight again
-        while (true)                                                            // data validation for invalid input
-        {
-            Console.Write("Would you like to add another flight? (Y/N) ");
-            string anotherFlight = Console.ReadLine().ToUpper();
-            if (anotherFlight == "N")
-            {
-                break;                                 // break out of the method
-            }
-            else if (anotherFlight == "Y")
-            {
-                NewFlight();                                    // rerun the method again
-            }
-            else
-            {
-                Console.WriteLine("Invalid option. Please try again.");               // allows user to input again if entered wrongly 
             }
         }
     }
@@ -1402,6 +1403,7 @@ void Main(Dictionary<string, Flight> flightdict, Dictionary<string, BoardingGate
         else if (option == "4")
         {
             NewFlight();
+            CreateFlightAgain();
         }
         else if (option == "5")
         {
