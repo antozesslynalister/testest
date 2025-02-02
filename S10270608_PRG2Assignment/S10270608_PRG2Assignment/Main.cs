@@ -236,7 +236,7 @@ void BoardingGateToFlight()
         while (true)                                                                             // data validation for invalid input
         {
             Console.Write("Enter Boarding Gate Name: ");
-            boarding_gate = Console.ReadLine();
+            boarding_gate = Console.ReadLine().ToUpper();
             if (!boardingGateDict.ContainsKey(boarding_gate))            //check if boarding gate typed in exists
             {
                 Console.WriteLine("Boarding Gate does not exist!");
@@ -992,6 +992,7 @@ void SortedFlights()
         Console.WriteLine("=============================================");
         Console.WriteLine("Flight Schedule for Changi Airport Terminal 5");
         Console.WriteLine("=============================================");
+        Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -15}{6, -15}", "Flight Number", "Airline Name", "Origin", "Destination", "Expected Departure/Arrival Time", "Status", "Boarding Gate");
 
         foreach (Flight flight in flightlist)
         {
@@ -1017,13 +1018,12 @@ void SortedFlights()
                     break;
                 }
             }
-            Console.WriteLine(flight.Status);
             Console.WriteLine("{0, -18}{1, -23}{2, -23}{3, -23}{4, -35}{5, -15}{6, -15}", (flight.FlightNumber), (flightname), (flight.Origin), (flight.Destination), (flight.ExpectedTime), (flight.Status), (gate)); // display the details if flight has status 
         }
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"Unexpected error ouccurred. {ex.Message}");
+        Console.WriteLine($"Unexpected error occurred. {ex.Message}");
     }
 }
 
@@ -1250,8 +1250,10 @@ void CalculateTotalFeePerAirline()
                 totalFees += airlineTotal;
                 totalDiscounts += airlineDiscounts;
 
-                Console.WriteLine($"{airline.Name}: Subtotal: ${airlineTotal}, Discounts: -${airlineDiscounts}, Final Total: ${airlineTotal - airlineDiscounts}");
-
+                Console.WriteLine($"{airline.Name}: ");
+                Console.WriteLine($"Subtotal: ${airlineTotal}");
+                Console.WriteLine($"Discounts: -${airlineDiscounts}");
+                Console.WriteLine($"Final Total: ${airlineTotal - airlineDiscounts}");
             }
             catch (Exception ex)
             {
